@@ -1,27 +1,25 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import GameBoard from '../Components/GameBoard';
+import styled from 'styled-components';
 
-const list: Array<string> = ['hii', 'bii', 'lii', 'nii', 'dii'];
+const StyledView = styled(View)`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid red;
+`;
 
-const App = () => {
+const StyledHeader = styled(Text)`
+    font-weight: bold;
+    font-size: 30px;
+`;
 
-    const showList = list.map((item, idx) => (<Text key={idx}>{item}</Text>));
-
-    return (
-        <View style={styles.container}>
-            <Text>Hello Linoy!</Text>
-            {showList}
-        </View>
-    );
-}
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
+const App = () => (
+    <StyledView>
+        <StyledHeader>Welcome to tic tac toe</StyledHeader>
+        <GameBoard />
+    </StyledView>
+);
 
 export default App;
