@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import App from './src/Containers/App';
+import AppRouter from './src/Containers/AppRouter';
 
 const Index = () => (
   <View style={styles.container}>
-    <App />
+    <AppRouter />
   </View>
 );
 

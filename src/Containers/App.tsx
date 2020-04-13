@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import GameBoard from '../Components/GameBoard';
+import { Text, View, Button } from 'react-native';
 import styled from 'styled-components';
+import { Link } from "react-router-native";
+import * as routes from '../routes';
 
 const StyledView = styled(View)`
     display: flex;
@@ -18,7 +19,11 @@ const StyledHeader = styled(Text)`
 const App = () => (
     <StyledView>
         <StyledHeader>Welcome to tic tac toe</StyledHeader>
-        <GameBoard />
+        <Link to={routes.GAME_BOARD}>
+            <View>
+                <Text>Start Play !</Text>
+            </View>
+        </Link>
     </StyledView>
 );
 
