@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import styled from 'styled-components';
-import { Link } from "react-router-native";
 import * as routes from '../routes';
 import AppButton from './AppButton';
 
@@ -14,6 +13,20 @@ const StyledBoard: any = styled(View)`
     margin-bottom: auto;
 `;
 
+const StyledRow: any = styled(View)`
+    display: flex;
+    flex-direction: row;
+    border: 2px solid red;
+    height: 300px;
+    width: 300px;
+`;
+
+const StyledColumn: any = styled(View)`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
 const StyledView: any = styled(View)`
     display: flex;
     flex-direction: column;
@@ -23,12 +36,22 @@ const StyledView: any = styled(View)`
     height: 100%;
 `;
 
-const GameBoard = () => (
+const GameBoard: React.FunctionComponent = () => (
     <StyledView>
         <StyledBoard>
 
+            <StyledColumn>
+                <View style={{ height: 2, width: 300, backgroundColor: 'black', transform: [{ translateY: 100 }] }} />
+                <View style={{ height: 2, width: 300, backgroundColor: 'black', transform: [{ translateY: 200 }] }} />
+            </StyledColumn>
+
+            <StyledRow>
+                <View style={{ height: 300, width: 2, backgroundColor: 'black', transform: [{ translateX: -100 }] }} />
+                <View style={{ height: 300, width: 2, backgroundColor: 'black', transform: [{ translateX: -200 }] }} />
+            </StyledRow>
+
         </StyledBoard>
-        <AppButton title='Stop playing' linkTo={routes.HOME} textColor='red' borderColor='red'/>
+        <AppButton title='Stop playing' linkTo={routes.HOME} textColor='red' borderColor='red' />
     </StyledView>
 );
 
