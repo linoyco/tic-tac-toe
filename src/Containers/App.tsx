@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import * as routes from '../routes';
 import AppButton from '../Components/AppButton';
 
-const StyledView = styled(View)`
+const StyledView: any = styled(View)`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -15,14 +15,14 @@ const StyledView = styled(View)`
 const StyledHeader = styled(Text)`
     font-weight: bold;
     font-size: 30px;
-    margin-top: 10%;
+    margin-top: 15%;
     margin-bottom: auto;
 `;
 
 const App: React.FunctionComponent = () => (
     <StyledView>
         <StyledHeader>Welcome to tic tac toe</StyledHeader>
-        <AppButton title='Start Play !' linkTo={`${routes.GAME_BOARD}`} textColor='green' />
+        <AppButton title='Start to play !' linkTo={`${routes.GAME_BOARD}`} textColor='green' borderColor='green'/>
     </StyledView>
 );
 

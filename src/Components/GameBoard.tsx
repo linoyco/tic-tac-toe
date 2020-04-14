@@ -5,19 +5,31 @@ import { Link } from "react-router-native";
 import * as routes from '../routes';
 import AppButton from './AppButton';
 
-const StyledView = styled(View)`
+const StyledBoard: any = styled(View)`
     border: 2px solid black;
-    width: 250px;
-    height: 250px;
+    border-radius: 10px;
+    width: 300px;
+    height: 300px;
+    margin-top: 50%;
+    margin-bottom: auto;
+`;
+
+const StyledView: any = styled(View)`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 `;
 
 const GameBoard = () => (
-    <View>
     <StyledView>
+        <StyledBoard>
 
+        </StyledBoard>
+        <AppButton title='Stop playing' linkTo={routes.HOME} textColor='red' borderColor='red'/>
     </StyledView>
-        <AppButton title='Stop Playing' linkTo={routes.HOME} textColor='red'/>
-    </View>
 );
 
 export default GameBoard;

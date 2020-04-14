@@ -7,7 +7,6 @@ import GameBoard from '../Components/GameBoard';
 
 var Route = require("react-router-native").Route;
 
-
 const AppRouter = () => (
     <NativeRouter>
         <Route exact path={routes.HOME} component={App} />

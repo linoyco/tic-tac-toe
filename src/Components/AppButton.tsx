@@ -8,15 +8,14 @@ interface IStyleProps {
     textColor?: string;
 }
 
-const StyledButton = styled(View) <IStyleProps>`
-    margin-top: auto;
-    margin-bottom: 30%;
-    border: 3px solid ${(props: IStyleProps) => props.borderColor || 'black'};
+const StyledButton: any = styled(View) <IStyleProps>`
+    margin-bottom: 15%;
+    border: 2px solid ${(props: IStyleProps) => props.borderColor || 'black'};
     border-radius: 10px;
     padding: 10px;
 `;
 
-const StyledHeader = styled(Text) <IStyleProps>`
+const StyledHeader: any = styled(Text) <IStyleProps>`
     font-weight: bold;
     font-size: 15px;
     margin: 5px;
