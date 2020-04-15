@@ -3,6 +3,8 @@ import { View } from 'react-native';
 import styled from 'styled-components';
 import * as routes from '../routes';
 import AppButton from './AppButton';
+import Circle from './Circle';
+import Cross from './Cross';
 
 const StyledBoard: any = styled(View)`
     border: 2px solid black;
@@ -27,8 +29,9 @@ const GameBoard: React.FunctionComponent = () => (
         <StyledBoard>
             <View style={{ position: 'absolute', height: 2, width: 298, backgroundColor: 'black', transform: [{ translateY: 100 }] }} />
             <View style={{ position: 'absolute', height: 2, width: 298, backgroundColor: 'black', transform: [{ translateY: 200 }] }} />
-            <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', transform: [{ translateX: 100 }] }} />
-            <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', transform: [{ translateX: 200 }] }} />
+            <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', transform: [{ translateX: -100 }] }} />
+            <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', transform: [{ translateX: -200 }] }} />
+            <Circle />
         </StyledBoard>
         <AppButton title='Stop playing' linkTo={routes.HOME} textColor='red' borderColor='red' />
     </StyledView>
