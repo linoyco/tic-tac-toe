@@ -13,20 +13,6 @@ const StyledBoard: any = styled(View)`
     margin-bottom: auto;
 `;
 
-const StyledRow: any = styled(View)`
-    display: flex;
-    flex-direction: row;
-    border: 2px solid red;
-    height: 300px;
-    width: 300px;
-`;
-
-const StyledColumn: any = styled(View)`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`;
-
 const StyledView: any = styled(View)`
     display: flex;
     flex-direction: column;
@@ -39,17 +25,10 @@ const StyledView: any = styled(View)`
 const GameBoard: React.FunctionComponent = () => (
     <StyledView>
         <StyledBoard>
-
-            <StyledColumn>
-                <View style={{ height: 2, width: 300, backgroundColor: 'black', transform: [{ translateY: 100 }] }} />
-                <View style={{ height: 2, width: 300, backgroundColor: 'black', transform: [{ translateY: 200 }] }} />
-            </StyledColumn>
-
-            <StyledRow>
-                <View style={{ height: 300, width: 2, backgroundColor: 'black', transform: [{ translateX: -100 }] }} />
-                <View style={{ height: 300, width: 2, backgroundColor: 'black', transform: [{ translateX: -200 }] }} />
-            </StyledRow>
-
+            <View style={{ position: 'absolute', height: 2, width: 298, backgroundColor: 'black', transform: [{ translateY: 100 }] }} />
+            <View style={{ position: 'absolute', height: 2, width: 298, backgroundColor: 'black', transform: [{ translateY: 200 }] }} />
+            <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', transform: [{ translateX: 100 }] }} />
+            <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', transform: [{ translateX: 200 }] }} />
         </StyledBoard>
         <AppButton title='Stop playing' linkTo={routes.HOME} textColor='red' borderColor='red' />
     </StyledView>
