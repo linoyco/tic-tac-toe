@@ -29,6 +29,7 @@ const GameBoard: React.FunctionComponent = () => (
         <StyledBoard>
             <View style={{ position: 'absolute', height: 2, width: 298, backgroundColor: 'black', transform: [{ translateY: 100 }] }} />
             <View style={{ position: 'absolute', height: 2, width: 298, backgroundColor: 'black', transform: [{ translateY: 200 }] }} />
+            {/* in ios, the translateX should be + */}
             <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', transform: [{ translateX: -100 }] }} />
             <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', transform: [{ translateX: -200 }] }} />
             <Circle />
