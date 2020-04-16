@@ -38,7 +38,8 @@ const GameBoard: React.FunctionComponent = () => (
             <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', marginLeft: 100 }} />
             <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', marginLeft: 200 }} />
 
-            <Circle />
+            <Circle marginLeft='10px' marginTop='10px'/>
+            <Circle marginLeft='110px' marginTop='110px'/>
         </StyledBoard>
         <AppButton title='Stop playing' linkTo={routes.HOME} textColor='red' borderColor='red' />
     </StyledView>
