@@ -6,7 +6,6 @@ const StyledView: any = styled(View) <IStyleProps>`
     margin-top: ${(props: IStyleProps) => props.marginTop};
     margin-left: ${(props: IStyleProps) => props.marginLeft};
     position: absolute;
-    border: 2px solid red;
 `;
 
 const OutLineCircle: any = styled(View)`

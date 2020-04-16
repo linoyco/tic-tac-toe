@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableWithoutFeedback } from 'react-native';
 import styled from 'styled-components';
 import * as routes from '../routes';
 import AppButton from './AppButton';
@@ -24,25 +24,25 @@ const StyledView: any = styled(View)`
     height: 100%;
 `;
 
+const pointsLocation = [
+    { left: '10px', top: '10px' },
+    { left: '10px', top: '110px' },
+    { left: '10px', top: '210px' },
+    { left: '110px', top: '10px' },
+    { left: '110px', top: '110px' },
+    { left: '110px', top: '210px' },
+    { left: '210px', top: '10px' },
+    { left: '210px', top: '110px' },
+    { left: '210px', top: '210px' }
+];
+
 const GameBoard: React.FunctionComponent = () => (
     <StyledView>
         <StyledBoard>
-            {/* <View style={{ position: 'absolute', height: 2, width: 298, backgroundColor: 'black', transform: [{ translateY: 100 }] }} />
-            <View style={{ position: 'absolute', height: 2, width: 298, backgroundColor: 'black', transform: [{ translateY: 200 }] }} /> */}
-            {/* in ios, the translateX should be + */}
-            {/* <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', transform: [{ translateX: -100 }] }} />
-            <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', transform: [{ translateX: -200 }] }} /> */}
-
             <View style={{ position: 'absolute', height: 2, width: 298, backgroundColor: 'black', marginTop: 100 }} />
             <View style={{ position: 'absolute', height: 2, width: 298, backgroundColor: 'black', marginTop: 200 }} />
             <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', marginLeft: 100 }} />
             <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', marginLeft: 200 }} />
-
-            <Circle marginLeft='10px' marginTop='10px' />
-            <Circle marginLeft='110px' marginTop='110px' />
-
-            <Cross marginLeft='210px' marginTop='10px'/>
-            
         </StyledBoard>
         <AppButton title='Stop playing' linkTo={routes.HOME} textColor='red' borderColor='red' />
     </StyledView>

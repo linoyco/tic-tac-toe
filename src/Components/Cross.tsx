@@ -3,13 +3,13 @@ import { View } from 'react-native';
 import styled from 'styled-components';
 
 const StyledView: any = styled(View) <IStyleProps>`
+    position: absolute;
     margin-top: ${(props: IStyleProps) => props.marginTop};
     margin-left: ${(props: IStyleProps) => props.marginLeft};
     width: 80;
     height: 80;
     align-items: center;
     justify-content: center;
-    border: 2px solid red;
 `;
 
 const OneLine: any = styled(View)`
