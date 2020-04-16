@@ -8,7 +8,7 @@ import Cross from './Cross';
 
 const StyledBoard: any = styled(View)`
     border: 2px solid black;
-    border-radius: 10px;
+    border-radius: 5px;
     width: 300px;
     height: 300px;
     margin-top: 50%;
@@ -27,11 +27,17 @@ const StyledView: any = styled(View)`
 const GameBoard: React.FunctionComponent = () => (
     <StyledView>
         <StyledBoard>
-            <View style={{ position: 'absolute', height: 2, width: 298, backgroundColor: 'black', transform: [{ translateY: 100 }] }} />
-            <View style={{ position: 'absolute', height: 2, width: 298, backgroundColor: 'black', transform: [{ translateY: 200 }] }} />
+            {/* <View style={{ position: 'absolute', height: 2, width: 298, backgroundColor: 'black', transform: [{ translateY: 100 }] }} />
+            <View style={{ position: 'absolute', height: 2, width: 298, backgroundColor: 'black', transform: [{ translateY: 200 }] }} /> */}
             {/* in ios, the translateX should be + */}
-            <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', transform: [{ translateX: -100 }] }} />
-            <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', transform: [{ translateX: -200 }] }} />
+            {/* <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', transform: [{ translateX: -100 }] }} />
+            <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', transform: [{ translateX: -200 }] }} /> */}
+          
+            <View style={{ position: 'absolute', height: 2, width: 298, backgroundColor: 'black', marginTop: 100 }} />
+            <View style={{ position: 'absolute', height: 2, width: 298, backgroundColor: 'black', marginTop: 200 }} />
+            <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', marginLeft: 100 }} />
+            <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', marginLeft: 200 }} />
+
             <Circle />
         </StyledBoard>
         <AppButton title='Stop playing' linkTo={routes.HOME} textColor='red' borderColor='red' />
