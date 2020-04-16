@@ -32,14 +32,17 @@ const GameBoard: React.FunctionComponent = () => (
             {/* in ios, the translateX should be + */}
             {/* <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', transform: [{ translateX: -100 }] }} />
             <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', transform: [{ translateX: -200 }] }} /> */}
-          
+
             <View style={{ position: 'absolute', height: 2, width: 298, backgroundColor: 'black', marginTop: 100 }} />
             <View style={{ position: 'absolute', height: 2, width: 298, backgroundColor: 'black', marginTop: 200 }} />
             <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', marginLeft: 100 }} />
             <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', marginLeft: 200 }} />
 
-            <Circle marginLeft='10px' marginTop='10px'/>
-            <Circle marginLeft='110px' marginTop='110px'/>
+            <Circle marginLeft='10px' marginTop='10px' />
+            <Circle marginLeft='110px' marginTop='110px' />
+
+            <Cross marginLeft='210px' marginTop='10px'/>
+            
         </StyledBoard>
         <AppButton title='Stop playing' linkTo={routes.HOME} textColor='red' borderColor='red' />
     </StyledView>
