@@ -22,7 +22,7 @@ const StyledHeader = styled(Text)`
 const App: React.FunctionComponent = () => (
     <StyledView>
         <StyledHeader>Welcome to tic tac toe</StyledHeader>
-        <AppButton title='Start to play !' linkTo={`${routes.GAME_BOARD}`} textColor='green' borderColor='green'/>
+        <AppButton title='Start to play !' linkTo={`${routes.GAME}`} textColor='green' borderColor='green'/>
     </StyledView>
 );
 
