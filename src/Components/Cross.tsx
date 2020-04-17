@@ -6,8 +6,8 @@ const StyledView: any = styled(View) <IStyleProps>`
     position: absolute;
     margin-top: ${(props: IStyleProps) => props.marginTop};
     margin-left: ${(props: IStyleProps) => props.marginLeft};
-    width: 80;
-    height: 80;
+    width: 80px;
+    height: 80px;
     align-items: center;
     justify-content: center;
 `;

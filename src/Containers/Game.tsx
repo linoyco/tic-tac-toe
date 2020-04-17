@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, TouchableWithoutFeedback, GestureResponderEvent } from 'react-native';
 import * as routes from '../routes';
 import AppButton from '../Components/AppButton';
 import Cross from '../Components/Cross';
+import Circle from '../Components/Circle';
 import styled from 'styled-components';
 
 const StyledView: any = styled(View)`
@@ -51,14 +52,25 @@ const touchedLocation = [
 
 const Game: React.FunctionComponent = () => {
     const [userInputs, setUserInputs] = useState([]);
+    const [aiInputs, setAiInputs] = useState([]);
+    const [round, serRound] = useState(0);
 
     const handleTouch = (e: GestureResponderEvent) => {
-        e.preventDefault();
         const { locationX, locationY } = e.nativeEvent;
         const currentLocation = touchedLocation.find(i =>
             (locationX >= i.startLeft && locationX <= i.endLeft) && (locationY >= i.startTop && locationY <= i.endTop));
         if (currentLocation && userInputs.every(i => i !== currentLocation.id)) {
             setUserInputs(userInputs.concat(currentLocation.id));
+        }
+        else return;
+        getAiRandom();
+    }
+
+    const getAiRandom = () => {
+        let randNumber: number = Math.random() * 9;
+        randNumber = Number.parseInt(`${randNumber}`);
+        if (userInputs.concat(aiInputs).every(i => i !== randNumber)) {
+            setAiInputs(aiInputs.concat(randNumber))
         }
     }
 
@@ -73,6 +85,11 @@ const Game: React.FunctionComponent = () => {
                     {
                         userInputs.map((one, idx) => (
                             <Cross key={idx} marginLeft={pointsLocation[one].left} marginTop={pointsLocation[one].top} />
+                        ))
+                    }
+                    {
+                        aiInputs.map((one, idx) => (
+                            <Circle key={idx} marginLeft={pointsLocation[one].left} marginTop={pointsLocation[one].top} />
                         ))
                     }
                 </StyledBoard>
