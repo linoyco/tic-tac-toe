@@ -36,7 +36,15 @@ const pointsLocation = [
     { left: '10px', top: '210px' }
 ];
 
-const touchedLocation = [
+interface ITouched {
+    startLeft: number;
+    startTop: number;
+    endLeft: number;
+    endTop: number;
+    id: number;
+}
+
+const touchedLocation: Array<ITouched> = [
     { startLeft: 0, startTop: 0, endLeft: 100, endTop: 100, id: 0 },
     { startLeft: 100, startTop: 0, endLeft: 200, endTop: 100, id: 1 },
     { startLeft: 200, startTop: 0, endLeft: 300, endTop: 100, id: 2 },
@@ -51,9 +59,9 @@ const touchedLocation = [
 ];
 
 const Game: React.FunctionComponent = () => {
-    const [userInputs, setUserInputs] = useState([]);
-    const [aiInputs, setAiInputs] = useState([]);
-    const [round, serRound] = useState(0);
+    const [userInputs, setUserInputs] = useState<Array<number>>([]);
+    const [aiInputs, setAiInputs] = useState<Array<number>>([]);
+    const [round, serRound] = useState<number>(null);
 
     const handleTouch = (e: GestureResponderEvent) => {
         const { locationX, locationY } = e.nativeEvent;
