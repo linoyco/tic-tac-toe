@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, GestureResponderEvent, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Alert, Text } from 'react-native';
 import * as routes from '../routes';
 import AppButton from '../Components/AppButton';
 import styled from 'styled-components';
 import { MaterialCommunityIcons as Icon } from 'react-native-vector-icons';
 
 const StyledView: any = styled(View)`
-    margin-bottom: 15%;
-    margin-top: auto;
+    display: flex;
+    flex-direction: row;
+    margin: 50px;
 `;
 
 const Game: React.FunctionComponent = () => {
@@ -19,14 +20,57 @@ const Game: React.FunctionComponent = () => {
     ]);
     const [currentPlayer, setCurrentPlayer] = useState<number>(1);
 
+    const resetBoard = () => {
+        setGameArr([
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0]
+        ]);
+        setCurrentPlayer(1);
+    }
+
     const handleTilePress = (row: number, column: number) => {
+        if (gameArr[row][column] !== 0) {
+            return;
+        } else {
+            let arr = gameArr.slice();
+            arr[row][column] = currentPlayer;
+            setGameArr(arr);
 
-        let arr = gameArr.slice();
-        arr[row][column] = currentPlayer;
-        setGameArr(arr);
+            let nextPlayer: number = (currentPlayer === 1) ? -1 : 1;
+            setCurrentPlayer(nextPlayer);
+        }
+        let winner = checkWinner();
+        if (winner === 1) {
+            Alert.alert('player 1 is winner !');
+            resetBoard();
+        } else if (winner === -1) {
+            Alert.alert('player 2 is winner !');
+            resetBoard();
+        }
+    }
 
-        let nextPlayer: number = (currentPlayer === 1) ? -1 : 1;
-        setCurrentPlayer(nextPlayer);
+    const checkWinner = () => {
+        const NUM_TILES: number = 3;
+        let sum: number;
+
+        for (let i = 0; i < NUM_TILES; i++) {
+            sum = gameArr[i][0] + gameArr[i][1] + gameArr[i][2];
+            if (sum === 3) { return 1; } else if (sum === -3) { return -1; }
+        }
+
+        for (let i = 0; i < NUM_TILES; i++) {
+            sum = gameArr[0][i] + gameArr[1][i] + gameArr[2][i];
+            if (sum === 3) { return 1; } else if (sum === -3) { return -1; }
+        }
+
+        sum = gameArr[0][0] + gameArr[1][1] + gameArr[2][2];
+        if (sum === 3) { return 1; } else if (sum === -3) { return -1; }
+
+        sum = gameArr[2][0] + gameArr[1][1] + gameArr[0][2];
+        if (sum === 3) { return 1; } else if (sum === -3) { return -1; }
+
+        return 0;
     }
 
     const renderIcon = (row: number, column: number) => {
@@ -79,6 +123,7 @@ const Game: React.FunctionComponent = () => {
 
             <StyledView>
                 <AppButton title='Stop playing' linkTo={routes.HOME} textColor='red' borderColor='red' />
+                <TouchableOpacity onPress={() => resetBoard()} style={styles.reset}><Text style={styles.resetIcon}>Restart! <Icon style={styles.resetIcon} name='restore' /></Text></TouchableOpacity>
             </StyledView>
 
         </View>
@@ -93,6 +138,23 @@ const styles = StyleSheet.create({
         width: '100 %',
         marginTop: 120,
         marginBottom: 'auto'
+    },
+    reset: {
+        height: 55,
+        borderWidth: 2,
+        borderColor: 'blue',
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: 10,
+        marginLeft: 10,
+        
+    },
+    resetIcon: {
+        color: 'blue',
+        fontSize: 15,
+        fontWeight: 'bold',
+        margin: 10
     },
     row: {
         flexDirection: 'row'
