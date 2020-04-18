@@ -18,7 +18,14 @@ const Game: React.FunctionComponent = () => {
         [0, 0, 0]
     ]);
 
-    
+    const renderIcon = (row: number, column: number) => {
+        const val = gameArr[row][column];
+        switch (val) {
+            case 1: return <Icon name='close' style={styles.tileX} />;
+            case -1: return <Icon name='circle-outline' style={styles.tileO} />;
+            default: return <View />;
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -26,24 +33,38 @@ const Game: React.FunctionComponent = () => {
 
             <View style={styles.row}>
                 <View style={[styles.tile, { borderLeftWidth: 0, borderTopWidth: 0 }]} >
-                    <Icon name='close' style={styles.tileX} />
+                    {renderIcon(0, 0)}
                 </View>
                 <View style={[styles.tile, { borderTopWidth: 0 }]}>
-                    <Icon name='circle-outline' style={styles.tileO} />
+                    {renderIcon(0, 1)}
                 </View>
-                <View style={[styles.tile, { borderRightWidth: 0, borderTopWidth: 0 }]}  ></View>
+                <View style={[styles.tile, { borderRightWidth: 0, borderTopWidth: 0 }]}  >
+                    {renderIcon(0, 2)}
+                </View>
             </View>
 
             <View style={styles.row}>
-                <View style={[styles.tile, { borderLeftWidth: 0 }]}  ></View>
-                <View style={[styles.tile]}  ></View>
-                <View style={[styles.tile, { borderRightWidth: 0 }]}  ></View>
+                <View style={[styles.tile, { borderLeftWidth: 0 }]}>
+                    {renderIcon(1, 0)}
+                </View>
+                <View style={[styles.tile]}>
+                    {renderIcon(1, 1)}
+                </View>
+                <View style={[styles.tile, { borderRightWidth: 0 }]}>
+                    {renderIcon(1, 2)}
+                </View>
             </View>
 
             <View style={styles.row}>
-                <View style={[styles.tile, { borderLeftWidth: 0, borderBottomWidth: 0 }]}  ></View>
-                <View style={[styles.tile, { borderBottomWidth: 0 }]}  ></View>
-                <View style={[styles.tile, { borderRightWidth: 0, borderBottomWidth: 0 }]}  ></View>
+                <View style={[styles.tile, { borderLeftWidth: 0, borderBottomWidth: 0 }]}>
+                    {renderIcon(2, 0)}
+                </View>
+                <View style={[styles.tile, { borderBottomWidth: 0 }]}>
+                    {renderIcon(2, 1)}
+                </View>
+                <View style={[styles.tile, { borderRightWidth: 0, borderBottomWidth: 0 }]}>
+                    {renderIcon(2, 2)}
+                </View>
             </View>
 
             {/* </TouchableWithoutFeedback> */}
