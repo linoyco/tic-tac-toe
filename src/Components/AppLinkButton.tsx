@@ -29,7 +29,7 @@ interface IProps {
     textColor?: string;
 }
 
-const AppButton: React.FunctionComponent<IProps> = ({ title, borderColor, linkTo = '', textColor }) => (
+const AppLinkButton: React.FunctionComponent<IProps> = ({ title, borderColor, linkTo = '', textColor }) => (
     <Link to={linkTo}>
         <StyledButton borderColor={borderColor}>
             <StyledHeader textColor={textColor}>{title}</StyledHeader>
@@ -37,4 +37,4 @@ const AppButton: React.FunctionComponent<IProps> = ({ title, borderColor, linkTo
     </Link>
 );
 
-export default AppButton;
+export default AppLinkButton;

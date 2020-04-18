@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, StyleSheet, Alert, Text } from 'react-native';
 import * as routes from '../routes';
-import AppButton from '../Components/AppButton';
+import AppLinkButton from '../Components/AppLinkButton';
 import styled from 'styled-components';
 import { MaterialCommunityIcons as Icon } from 'react-native-vector-icons';
 
@@ -82,8 +82,14 @@ const Game: React.FunctionComponent = () => {
         }
     }
 
+    const NextTurn = (currentPlayer === 1) ? <Icon name='close' style={styles.nextTileX} /> : <Icon name='circle-outline' style={styles.nextTileO} />;
+
     return (
         <View style={styles.container}>
+
+            <View style={{ marginTop: 40, marginBottom: 'auto' }}>
+                <Text style={styles.nextTitle}>The next turn: {NextTurn} </Text>
+            </View>
 
             <View style={styles.row}>
                 <TouchableOpacity onPress={() => handleTilePress(0, 0)} style={[styles.tile, { borderLeftWidth: 0, borderTopWidth: 0 }]} >
@@ -122,7 +128,7 @@ const Game: React.FunctionComponent = () => {
             </View>
 
             <StyledView>
-                <AppButton title='Stop playing' linkTo={routes.HOME} textColor='red' borderColor='red' />
+                <AppLinkButton title='Stop playing' linkTo={routes.HOME} textColor='red' borderColor='red' />
                 <TouchableOpacity onPress={() => resetBoard()} style={styles.reset}><Text style={styles.resetIcon}>Restart! <Icon style={styles.resetIcon} name='restore' /></Text></TouchableOpacity>
             </StyledView>
 
@@ -137,7 +143,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: '100 %',
         marginTop: 120,
-        marginBottom: 'auto'
+        marginBottom: 100
     },
     reset: {
         height: 55,
@@ -148,7 +154,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginRight: 10,
         marginLeft: 10,
-        
     },
     resetIcon: {
         color: 'blue',
@@ -173,6 +178,18 @@ const styles = StyleSheet.create({
     tileO: {
         color: 'green',
         fontSize: 70,
+    },
+    nextTileX: {
+        color: 'red',
+        fontSize: 40,
+    },
+    nextTileO: {
+        color: 'green',
+        fontSize: 30,
+    },
+    nextTitle: {
+        fontWeight: 'bold',
+        fontSize: 20
     }
 });
 

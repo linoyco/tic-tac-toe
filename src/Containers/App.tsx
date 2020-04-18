@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import styled from 'styled-components';
 import * as routes from '../routes';
-import AppButton from '../Components/AppButton';
+import AppLinkButton from '../Components/AppLinkButton';
 
 const StyledView: any = styled(View)`
     display: flex;
@@ -15,14 +15,14 @@ const StyledView: any = styled(View)`
 const StyledHeader = styled(Text)`
     font-weight: bold;
     font-size: 30px;
-    margin-top: 15%;
-    margin-bottom: auto;
+    margin-top: 30%;
+    margin-bottom: 70%;
 `;
 
 const App: React.FunctionComponent = () => (
     <StyledView>
-        <StyledHeader>Welcome to tic tac toe</StyledHeader>
-        <AppButton title='Start to play !' linkTo={`${routes.GAME}`} textColor='green' borderColor='green'/>
+        <StyledHeader>Welcome to tic tac toe!</StyledHeader>
+        <AppLinkButton title='Start to play !' linkTo={`${routes.GAME}`} textColor='green' borderColor='green'/>
     </StyledView>
 );
 
