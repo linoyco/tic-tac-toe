@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, TouchableWithoutFeedback, GestureResponderEvent } from 'react-native';
+import React, { useState } from 'react';
+import { View, TouchableWithoutFeedback, GestureResponderEvent, StyleSheet } from 'react-native';
 import * as routes from '../routes';
 import AppButton from '../Components/AppButton';
 import Cross from '../Components/Cross';
@@ -7,21 +7,8 @@ import Circle from '../Components/Circle';
 import styled from 'styled-components';
 
 const StyledView: any = styled(View)`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-`;
-
-const StyledBoard: any = styled(View)`
-    border: 2px solid black;
-    border-radius: 5px;
-    width: 300px;
-    height: 300px;
-    margin-top: 50%;
-    margin-bottom: auto;
+    margin-bottom: 15%;
+    margin-top: auto;
 `;
 
 const pointsLocation = [
@@ -83,28 +70,52 @@ const Game: React.FunctionComponent = () => {
     }
 
     return (
-        <StyledView>
-            <TouchableWithoutFeedback onPress={(e: GestureResponderEvent) => handleTouch(e)}>
-                <StyledBoard>
-                    <View style={{ position: 'absolute', height: 2, width: 298, backgroundColor: 'black', marginTop: 100 }} />
-                    <View style={{ position: 'absolute', height: 2, width: 298, backgroundColor: 'black', marginTop: 200 }} />
-                    <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', marginLeft: 100 }} />
-                    <View style={{ position: 'absolute', height: 298, width: 2, backgroundColor: 'black', marginLeft: 200 }} />
-                    {
-                        userInputs.map((one, idx) => (
-                            <Cross key={idx} marginLeft={pointsLocation[one].left} marginTop={pointsLocation[one].top} />
-                        ))
-                    }
-                    {
-                        aiInputs.map((one, idx) => (
-                            <Circle key={idx} marginLeft={pointsLocation[one].left} marginTop={pointsLocation[one].top} />
-                        ))
-                    }
-                </StyledBoard>
-            </TouchableWithoutFeedback>
-            <AppButton title='Stop playing' linkTo={routes.HOME} textColor='red' borderColor='red' />
-        </StyledView>
+        <View style={styles.container}>
+            {/* <TouchableWithoutFeedback onPress={(e: GestureResponderEvent) => handleTouch(e)}> */}
+
+            <View style={styles.row}>
+                <View style={[styles.tile, { borderLeftWidth: 0, borderTopWidth: 0 }]} />
+                <View style={[styles.tile, { borderTopWidth: 0 }]} />
+                <View style={[styles.tile, { borderRightWidth: 0, borderTopWidth: 0 }]} />
+            </View>
+
+            <View style={styles.row}>
+                <View style={[styles.tile, { borderLeftWidth: 0 }]} />
+                <View style={[styles.tile]} />
+                <View style={[styles.tile, { borderRightWidth: 0 }]} />
+            </View>
+
+            <View style={styles.row}>
+                <View style={[styles.tile, { borderLeftWidth: 0, borderBottomWidth: 0 }]} />
+                <View style={[styles.tile, { borderBottomWidth: 0 }]} />
+                <View style={[styles.tile, { borderRightWidth: 0, borderBottomWidth: 0 }]} />
+            </View>
+
+            {/* </TouchableWithoutFeedback> */}
+            <StyledView>
+                <AppButton title='Stop playing' linkTo={routes.HOME} textColor='red' borderColor='red' />
+            </StyledView>
+        </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100 %',
+        marginTop: 120,
+        marginBottom: 'auto'
+    },
+    row: {
+        flexDirection: 'row'
+    },
+    tile: {
+        borderWidth: 1,
+        width: 100,
+        height: 100
+    }
+});
 
 export default Game;
