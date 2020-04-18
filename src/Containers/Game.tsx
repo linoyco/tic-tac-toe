@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TouchableWithoutFeedback, GestureResponderEvent, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, GestureResponderEvent, StyleSheet } from 'react-native';
 import * as routes from '../routes';
 import AppButton from '../Components/AppButton';
 import styled from 'styled-components';
@@ -17,6 +17,17 @@ const Game: React.FunctionComponent = () => {
         [0, 0, 0],
         [0, 0, 0]
     ]);
+    const [currentPlayer, setCurrentPlayer] = useState<number>(1);
+
+    const handleTilePress = (row: number, column: number) => {
+
+        let arr = gameArr.slice();
+        arr[row][column] = currentPlayer;
+        setGameArr(arr);
+
+        let nextPlayer: number = (currentPlayer === 1) ? -1 : 1;
+        setCurrentPlayer(nextPlayer);
+    }
 
     const renderIcon = (row: number, column: number) => {
         const val = gameArr[row][column];
@@ -29,48 +40,47 @@ const Game: React.FunctionComponent = () => {
 
     return (
         <View style={styles.container}>
-            {/* <TouchableWithoutFeedback onPress={(e: GestureResponderEvent) => handleTouch(e)}> */}
 
             <View style={styles.row}>
-                <View style={[styles.tile, { borderLeftWidth: 0, borderTopWidth: 0 }]} >
+                <TouchableOpacity onPress={() => handleTilePress(0, 0)} style={[styles.tile, { borderLeftWidth: 0, borderTopWidth: 0 }]} >
                     {renderIcon(0, 0)}
-                </View>
-                <View style={[styles.tile, { borderTopWidth: 0 }]}>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => handleTilePress(0, 1)} style={[styles.tile, { borderTopWidth: 0 }]}>
                     {renderIcon(0, 1)}
-                </View>
-                <View style={[styles.tile, { borderRightWidth: 0, borderTopWidth: 0 }]}  >
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => handleTilePress(0, 2)} style={[styles.tile, { borderRightWidth: 0, borderTopWidth: 0 }]}  >
                     {renderIcon(0, 2)}
-                </View>
+                </TouchableOpacity>
             </View>
 
             <View style={styles.row}>
-                <View style={[styles.tile, { borderLeftWidth: 0 }]}>
+                <TouchableOpacity onPress={() => handleTilePress(1, 0)} style={[styles.tile, { borderLeftWidth: 0 }]}>
                     {renderIcon(1, 0)}
-                </View>
-                <View style={[styles.tile]}>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => handleTilePress(1, 1)} style={[styles.tile]}>
                     {renderIcon(1, 1)}
-                </View>
-                <View style={[styles.tile, { borderRightWidth: 0 }]}>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => handleTilePress(1, 2)} style={[styles.tile, { borderRightWidth: 0 }]}>
                     {renderIcon(1, 2)}
-                </View>
+                </TouchableOpacity>
             </View>
 
             <View style={styles.row}>
-                <View style={[styles.tile, { borderLeftWidth: 0, borderBottomWidth: 0 }]}>
+                <TouchableOpacity onPress={() => handleTilePress(2, 0)} style={[styles.tile, { borderLeftWidth: 0, borderBottomWidth: 0 }]}>
                     {renderIcon(2, 0)}
-                </View>
-                <View style={[styles.tile, { borderBottomWidth: 0 }]}>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => handleTilePress(2, 1)} style={[styles.tile, { borderBottomWidth: 0 }]}>
                     {renderIcon(2, 1)}
-                </View>
-                <View style={[styles.tile, { borderRightWidth: 0, borderBottomWidth: 0 }]}>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => handleTilePress(2, 2)} style={[styles.tile, { borderRightWidth: 0, borderBottomWidth: 0 }]}>
                     {renderIcon(2, 2)}
-                </View>
+                </TouchableOpacity>
             </View>
 
-            {/* </TouchableWithoutFeedback> */}
             <StyledView>
                 <AppButton title='Stop playing' linkTo={routes.HOME} textColor='red' borderColor='red' />
             </StyledView>
+
         </View>
     );
 }
@@ -100,7 +110,7 @@ const styles = StyleSheet.create({
     },
     tileO: {
         color: 'green',
-        fontSize: 80,
+        fontSize: 70,
     }
 });
 
