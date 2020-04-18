@@ -15,8 +15,8 @@ const StyledView: any = styled(View)`
 const StyledHeader = styled(Text)`
     font-weight: bold;
     font-size: 30px;
-    margin-top: 30%;
-    margin-bottom: 70%;
+    margin-top: 10%;
+    margin-bottom: 90%;
 `;
 
 const App: React.FunctionComponent = () => (
