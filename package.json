@@ -1,6 +1,9 @@
 {
   "main": "node_modules/expo/AppEntry.js",
+  "homepage": "http://linoyco.github.io/tic-tac-toe",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -19,8 +22,9 @@
     "styled-components": "^5.1.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.8.6",
     "babel-preset-expo": "~8.1.0",
-    "@babel/core": "^7.8.6"
+    "gh-pages": "^2.2.0"
   },
   "private": true
 }
