@@ -19,11 +19,11 @@ const StyledHeader = styled(Text)`
     margin-bottom: 90%;
 `;
 
-const App: React.FunctionComponent = () => (
+const Index: React.FunctionComponent = () => (
     <StyledView>
         <StyledHeader>Welcome to tic tac toe!</StyledHeader>
         <AppLinkButton title='Start to play !' linkTo={`${routes.GAME}`} textColor='green' borderColor='green'/>
     </StyledView>
 );
 
-export default App;
+export default Index;

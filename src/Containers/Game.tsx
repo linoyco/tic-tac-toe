@@ -3,7 +3,8 @@ import { View, TouchableOpacity, StyleSheet, Alert, Text } from 'react-native';
 import * as routes from '../routes';
 import AppLinkButton from '../Components/AppLinkButton';
 import styled from 'styled-components';
-import { MaterialCommunityIcons as Icon } from 'react-native-vector-icons/MaterialCommunityIcons';
+// import { MaterialCommunityIcons as Icon } from 'react-native-vector-icons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 const StyledView: any = styled(View)`

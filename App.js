@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import AppRouter from './src/Containers/AppRouter';
 
-const Index = () => (
+const App = () => (
   <View style={styles.container}>
     <AppRouter />
   </View>
@@ -16,4 +16,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Index;
+export default App;
