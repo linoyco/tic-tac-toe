@@ -130,7 +130,7 @@ const Game: React.FunctionComponent = () => {
             </View>
 
             <StyledView>
-                <AppLinkButton title='Stop playing' linkTo={routes.HOME} textColor='red' borderColor='red' />
+                <AppLinkButton title='Stop playing' linkTo={routes.PROFILE} textColor='red' borderColor='red' />
                 <TouchableOpacity onPress={() => resetBoard()} style={styles.reset}><Text style={styles.resetIcon}>Restart! <Icon style={styles.resetIcon} name='restore' /></Text></TouchableOpacity>
             </StyledView>
 

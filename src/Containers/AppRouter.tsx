@@ -4,13 +4,15 @@ import * as routes from '../routes';
 import HomePage from './HomePage';
 import Game from './Game';
 import LoginPage from './LoginPage';
+import PersonalPage from './PersonalPage';
 
 var Route = require("react-router-native").Route;
 
 const AppRouter = () => (
     <NativeRouter>
-        <Route exact path={routes.LOGIN} component={LoginPage} />
         <Route exact path={routes.HOME} component={HomePage} />
+        <Route path={routes.LOGIN} component={LoginPage} />
+        <Route path={routes.PROFILE} component={PersonalPage} />
         <Route path={routes.GAME} component={Game} />
     </NativeRouter>
 );
