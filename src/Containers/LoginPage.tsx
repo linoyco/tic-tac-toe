@@ -6,7 +6,7 @@ import * as routes from '../routes';
 const LoginPage = () => (
     <View>
         <Text>Login</Text>
-        <AppLinkButton title='Login' linkTo={routes.LOGIN} />
+        <AppLinkButton title='Login' linkTo={routes.HOME} />
     </View>
 );
 
