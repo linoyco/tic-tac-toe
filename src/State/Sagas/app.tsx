@@ -1,10 +1,11 @@
 import { put, take, call } from 'redux-saga/effects';
+import * as Routes from '../../routes';
 
 import { LOGIN_REQUEST } from '../Actions/App/types';
 
-function* loginRequestFlow(phoneNumber: string, fullName: string) {
+function* loginRequestFlow() {
     try {
-
+    //  yield put(push(Routes.PROFILE));
     }
     catch (error) {
         console.log(error);
@@ -13,8 +14,8 @@ function* loginRequestFlow(phoneNumber: string, fullName: string) {
 
 export function* watchLoginRequest() {
     while (true) {
-        const { phoneNumber, fullName } = yield take(LOGIN_REQUEST);
+        yield take(LOGIN_REQUEST);
 
-        yield call(loginRequestFlow, phoneNumber, fullName);
+        yield call(loginRequestFlow);
     }
 };
