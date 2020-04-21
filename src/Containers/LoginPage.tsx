@@ -32,7 +32,7 @@ const LoginPage = () => {
                 mode='flat'
                 label='Your name'
             />
-            <AppLinkButton style={{marginTop: 100}} title='Log-in !' linkTo={`${routes.PROFILE}`} textColor='green' borderColor='green' />
+            <AppLinkButton style={{marginTop: 100}} title='Log-in !' linkTo={`${routes.PROFILE}`} textColor='#6200ee' borderColor='#6200ee' />
         </StyledView>
     );
 }

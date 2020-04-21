@@ -10,7 +10,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const StyledView: any = styled(View)`
     display: flex;
     flex-direction: row;
-    margin: 50px;
+    margin: 20px;
 `;
 
 const Game: React.FunctionComponent = () => {
@@ -89,9 +89,7 @@ const Game: React.FunctionComponent = () => {
     return (
         <View style={styles.container}>
 
-            <View style={{ marginTop: 40, marginBottom: 'auto' }}>
-                <Text style={styles.nextTitle}>The next turn: {NextTurn} </Text>
-            </View>
+            <Text style={styles.nextTitle}>The next turn: {NextTurn} </Text>
 
             <View style={styles.row}>
                 <TouchableOpacity onPress={() => handleTilePress(0, 0)} style={[styles.tile, { borderLeftWidth: 0, borderTopWidth: 0 }]} >
@@ -140,12 +138,9 @@ const Game: React.FunctionComponent = () => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
-        width: '100 %',
-        marginTop: 120,
-        marginBottom: 100
+        width: '100%',
+        height: '80%'
     },
     reset: {
         height: 55,
@@ -191,7 +186,8 @@ const styles = StyleSheet.create({
     },
     nextTitle: {
         fontWeight: 'bold',
-        fontSize: 20
+        fontSize: 20,
+        margin: 20
     }
 });
 
