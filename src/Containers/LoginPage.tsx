@@ -1,27 +1,3 @@
-// const LoginPage = () => {
-//     const dispatch: Dispatch = useDispatch();
-
-//     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-//     const [phone, setPhone] = useState<string>('');
-//     const [name, setName] = useState<string>('');
-
-//     return (
-//         // <StyledView>
-//         //     <StyledHeader>LOGIN</StyledHeader>
-
-//         //         <CustomInput
-//         //             mode='flat'
-//         //             label='Your phone number'
-//         //         />
-//         //         <CustomInput
-//         //             mode='flat'
-//         //             label='Your name'
-//         //         />
-//         //     <AppLinkButton style={{ marginTop: 100 }} title='Log-in !' linkTo={`${routes.PROFILE}`} textColor='#6200ee' borderColor='#6200ee' />
-//         // </StyledView>
-//     );
-// }
-
 import React, { useState } from 'react';
 import { View, StyleSheet, ScrollView, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,6 +5,8 @@ import { Dispatch } from 'redux';
 import FormBuilder from 'react-native-paper-form-builder';
 import { useForm } from 'react-hook-form';
 import { Button } from 'react-native-paper';
+
+import { loginRequest } from '../State/Actions/App/index';
 
 interface ILoginDetails {
     phoneNumber: string;
@@ -100,7 +78,7 @@ const LoginPage: React.FunctionComponent = () => {
                     <Button
                         mode={'contained'}
                         onPress={form.handleSubmit((data: ILoginDetails) => {
-                            console.log('login details: ', data);
+                            dispatch(loginRequest(data.phoneNumber, data.fullName));
                         })}>Log-in</Button>
                 </FormBuilder>
             </ScrollView>
