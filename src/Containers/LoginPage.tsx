@@ -6,6 +6,7 @@ import FormBuilder from 'react-native-paper-form-builder';
 import { useForm } from 'react-hook-form';
 import { Button } from 'react-native-paper';
 import * as Routes from '../routes';
+import { Link } from "react-router-native";
 
 import { loginRequest } from '../State/Actions/App/index';
 
@@ -70,17 +71,20 @@ const LoginPage: React.FunctionComponent = () => {
                             textInputProps: {
                                 keyboardType: 'name-phone-pad',
                                 autoCapitalize: 'none',
-                                style: { backgroundColor: 'white', marginBottom: 30 },
+                                style: { backgroundColor: 'white' },
 
                             },
                         },
 
                     ]}>
-                    <Button
-                        mode={'contained'}
-                        onPress={form.handleSubmit((data: ILoginDetails) => {
-                            dispatch(loginRequest(data.phoneNumber, data.fullName));
-                        })}>Log-in</Button>
+                    <Link to={Routes.PROFILE} style={{width:'100%'}}>
+                        <Button
+                            style={{ marginTop: 30 }}
+                            mode={'contained'}
+                            onPress={form.handleSubmit((data: ILoginDetails) => {
+                                dispatch(loginRequest(data.phoneNumber, data.fullName));
+                            })}>Log-in</Button>
+                    </Link>
                 </FormBuilder>
             </ScrollView>
         </View>
