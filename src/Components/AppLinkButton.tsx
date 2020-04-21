@@ -1,40 +1,32 @@
 import React from 'react';
-import styled from "styled-components";
 import { Link } from "react-router-native";
-import { View, Text } from "react-native";
+import { Button } from 'react-native-paper';
+import styled from "styled-components";
 
 interface IStyleProps {
-    borderColor?: string;
-    textColor?: string;
+    color?: string;
 }
 
-const StyledButton: any = styled(View) <IStyleProps>`
-    margin-bottom: 15%;
-    border: 2px solid ${(props: IStyleProps) => props.borderColor || 'black'};
-    border-radius: 10px;
-    padding: 10px;
-`;
-
-const StyledHeader: any = styled(Text) <IStyleProps>`
-    font-weight: bold;
-    font-size: 15px;
-    margin: 5px;
-    color: ${(props: IStyleProps) => props.textColor || 'black'};
+const StyledButton: any = styled(Button) <IStyleProps>`
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 40px;
+    background-color: ${(props: IStyleProps) => props.color || '#6200ee'};
 `;
 
 interface IProps {
     title: string;
     linkTo?: string;
-    borderColor?: string;
-    textColor?: string;
+    color?: string;
     style?: any;
+    onPress?: any;
 }
 
-const AppLinkButton: React.FunctionComponent<IProps> = ({ title, borderColor, linkTo = '', textColor, style }) => (
-    <Link to={linkTo} style={style}>
-        <StyledButton borderColor={borderColor}>
-            <StyledHeader textColor={textColor}>{title}</StyledHeader>
-        </StyledButton>
+const AppLinkButton: React.FunctionComponent<IProps> = ({ title, color, linkTo = '', style, onPress }) => (
+    <Link to={linkTo} style={{ width: '100%' }}>
+        <StyledButton onPress={onPress} color={color} mode={'contained'} style={style || ''}>{title}</StyledButton>
     </Link>
 );
 

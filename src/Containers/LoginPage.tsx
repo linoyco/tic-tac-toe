@@ -9,6 +9,7 @@ import * as Routes from '../routes';
 import { Link } from "react-router-native";
 
 import { loginRequest } from '../State/Actions/App/index';
+import AppLinkButton from '../Components/AppLinkButton';
 
 interface ILoginDetails {
     phoneNumber: string;
@@ -77,14 +78,13 @@ const LoginPage: React.FunctionComponent = () => {
                         },
 
                     ]}>
-                    <Link to={Routes.PROFILE} style={{width:'100%'}}>
-                        <Button
-                            style={{ marginTop: 30 }}
-                            mode={'contained'}
-                            onPress={form.handleSubmit((data: ILoginDetails) => {
-                                dispatch(loginRequest(data.phoneNumber, data.fullName));
-                            })}>Log-in</Button>
-                    </Link>
+                    <AppLinkButton
+                        title='Log-in'
+                        color='#6200ee'
+                        linkTo={Routes.PROFILE}
+                        onPress={form.handleSubmit((data: ILoginDetails) => {
+                            dispatch(loginRequest(data.phoneNumber, data.fullName));
+                        })} />
                 </FormBuilder>
             </ScrollView>
         </View>

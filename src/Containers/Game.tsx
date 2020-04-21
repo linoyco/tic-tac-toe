@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, StyleSheet, Alert, Text } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Alert, Text, ScrollView } from 'react-native';
 import * as routes from '../routes';
 import AppLinkButton from '../Components/AppLinkButton';
 import styled from 'styled-components';
 // import { MaterialCommunityIcons as Icon } from 'react-native-vector-icons';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
-
-const StyledView: any = styled(View)`
-    display: flex;
-    flex-direction: row;
-    margin: 20px;
-`;
+import { Button } from 'react-native-paper';
 
 const Game: React.FunctionComponent = () => {
 
@@ -88,75 +82,65 @@ const Game: React.FunctionComponent = () => {
 
     return (
         <View style={styles.container}>
+            <ScrollView>
+                <Text style={styles.headingStyle}>The next turn: {NextTurn} </Text>
 
-            <Text style={styles.nextTitle}>The next turn: {NextTurn} </Text>
+                <View style={styles.row}>
+                    <TouchableOpacity onPress={() => handleTilePress(0, 0)} style={[styles.tile, { borderLeftWidth: 0, borderTopWidth: 0 }]} >
+                        {renderIcon(0, 0)}
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleTilePress(0, 1)} style={[styles.tile, { borderTopWidth: 0 }]}>
+                        {renderIcon(0, 1)}
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleTilePress(0, 2)} style={[styles.tile, { borderRightWidth: 0, borderTopWidth: 0 }]}  >
+                        {renderIcon(0, 2)}
+                    </TouchableOpacity>
+                </View>
 
-            <View style={styles.row}>
-                <TouchableOpacity onPress={() => handleTilePress(0, 0)} style={[styles.tile, { borderLeftWidth: 0, borderTopWidth: 0 }]} >
-                    {renderIcon(0, 0)}
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => handleTilePress(0, 1)} style={[styles.tile, { borderTopWidth: 0 }]}>
-                    {renderIcon(0, 1)}
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => handleTilePress(0, 2)} style={[styles.tile, { borderRightWidth: 0, borderTopWidth: 0 }]}  >
-                    {renderIcon(0, 2)}
-                </TouchableOpacity>
-            </View>
+                <View style={styles.row}>
+                    <TouchableOpacity onPress={() => handleTilePress(1, 0)} style={[styles.tile, { borderLeftWidth: 0 }]}>
+                        {renderIcon(1, 0)}
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleTilePress(1, 1)} style={[styles.tile]}>
+                        {renderIcon(1, 1)}
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleTilePress(1, 2)} style={[styles.tile, { borderRightWidth: 0 }]}>
+                        {renderIcon(1, 2)}
+                    </TouchableOpacity>
+                </View>
 
-            <View style={styles.row}>
-                <TouchableOpacity onPress={() => handleTilePress(1, 0)} style={[styles.tile, { borderLeftWidth: 0 }]}>
-                    {renderIcon(1, 0)}
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => handleTilePress(1, 1)} style={[styles.tile]}>
-                    {renderIcon(1, 1)}
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => handleTilePress(1, 2)} style={[styles.tile, { borderRightWidth: 0 }]}>
-                    {renderIcon(1, 2)}
-                </TouchableOpacity>
-            </View>
+                <View style={styles.row}>
+                    <TouchableOpacity onPress={() => handleTilePress(2, 0)} style={[styles.tile, { borderLeftWidth: 0, borderBottomWidth: 0 }]}>
+                        {renderIcon(2, 0)}
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleTilePress(2, 1)} style={[styles.tile, { borderBottomWidth: 0 }]}>
+                        {renderIcon(2, 1)}
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleTilePress(2, 2)} style={[styles.tile, { borderRightWidth: 0, borderBottomWidth: 0 }]}>
+                        {renderIcon(2, 2)}
+                    </TouchableOpacity>
+                </View>
 
-            <View style={styles.row}>
-                <TouchableOpacity onPress={() => handleTilePress(2, 0)} style={[styles.tile, { borderLeftWidth: 0, borderBottomWidth: 0 }]}>
-                    {renderIcon(2, 0)}
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => handleTilePress(2, 1)} style={[styles.tile, { borderBottomWidth: 0 }]}>
-                    {renderIcon(2, 1)}
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => handleTilePress(2, 2)} style={[styles.tile, { borderRightWidth: 0, borderBottomWidth: 0 }]}>
-                    {renderIcon(2, 2)}
-                </TouchableOpacity>
-            </View>
-
-            <StyledView>
-                <AppLinkButton title='Stop playing' linkTo={routes.PROFILE} textColor='red' borderColor='red' />
-                <TouchableOpacity onPress={() => resetBoard()} style={styles.reset}><Text style={styles.resetIcon}>Restart! <Icon style={styles.resetIcon} name='restore' /></Text></TouchableOpacity>
-            </StyledView>
-
+                <Button color='black' mode='contained' onPress={() => resetBoard()} style={styles.reset}>Restart! <Icon style={styles.resetIcon} name='restore' /></Button>
+                <AppLinkButton title='Stop playing' linkTo={routes.PROFILE} color='#636364' />
+            </ScrollView>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: 'center',
-        width: '100%',
-        height: '80%'
+        width: '80%',
     },
-    reset: {
-        height: 55,
-        borderWidth: 2,
-        borderColor: 'blue',
-        borderRadius: 10,
-        alignItems: 'center',
+    scrollViewStyle: {
+        padding: 15,
         justifyContent: 'center',
-        marginRight: 10,
-        marginLeft: 10,
     },
-    resetIcon: {
-        color: 'blue',
-        fontSize: 15,
-        fontWeight: 'bold',
-        margin: 10
+    headingStyle: {
+        fontSize: 30,
+        textAlign: 'center',
+        marginBottom: 40,
+        fontWeight: 'bold'
     },
     row: {
         flexDirection: 'row'
@@ -184,10 +168,15 @@ const styles = StyleSheet.create({
         color: 'green',
         fontSize: 30,
     },
-    nextTitle: {
-        fontWeight: 'bold',
+    reset: {
+        height: 40,
+        backgroundColor: '#6200ee',
+        marginTop: 30,
+    },
+    resetIcon: {
+        color: 'white',
         fontSize: 20,
-        margin: 20
+        fontWeight: 'bold',
     }
 });
 

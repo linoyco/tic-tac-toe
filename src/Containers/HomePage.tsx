@@ -8,21 +8,24 @@ const StyledView: any = styled(View)`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 80%;
     height: 100%;
 `;
 
 const StyledHeader = styled(Text)`
     font-weight: bold;
     font-size: 30px;
-    margin-top: 10%;
-    margin-bottom: 90%;
+    margin-bottom: 40%;
 `;
 
 const HomePage: React.FunctionComponent = () => (
     <StyledView>
         <StyledHeader>Welcome to tic tac toe!</StyledHeader>
-        <AppLinkButton title='Please login' linkTo={`${routes.LOGIN}`} textColor='green' borderColor='green'/>
+        <AppLinkButton
+            title='Please login'
+            linkTo={`${routes.LOGIN}`}
+            color='#6200ee'
+        />
     </StyledView>
 );
 
