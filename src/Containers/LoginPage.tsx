@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import * as routes from '../routes';
 import AppLinkButton from '../Components/AppLinkButton';
 import CustomInput from '../Components/CustomInput';
+import { useDispatch, useSelector } from 'react-redux';
+import { Dispatch } from 'redux';
 
 const StyledView: any = styled(View)`
     display: flex;
@@ -19,7 +21,11 @@ const StyledHeader = styled(Text)`
 `;
 
 const LoginPage = () => {
+    const dispatch: Dispatch = useDispatch();
+
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+    const [phone, setPhone] = useState<string>('');
+    const [name, setName] = useState<string>('');
     
     return (
         <StyledView>
