@@ -62,6 +62,7 @@ const LoginPage: React.FunctionComponent = () => {
                     formConfigArray={[
                         {
                             type: 'input',
+                            variant: 'outlined',
                             name: 'phoneNumber',
                             label: 'Your phone number',
                             rules: {
@@ -73,10 +74,12 @@ const LoginPage: React.FunctionComponent = () => {
                             textInputProps: {
                                 keyboardType: 'phone-pad',
                                 autoCapitalize: 'none',
+                                style: { backgroundColor: 'white' },
                             },
                         },
                         {
                             type: 'input',
+                            variant: 'outlined',
                             name: 'fullName',
                             label: 'Your full name',
                             rules: {
@@ -86,11 +89,13 @@ const LoginPage: React.FunctionComponent = () => {
                                 },
                             },
                             textInputProps: {
-                                // secureTextEntry: true,
                                 keyboardType: 'name-phone-pad',
                                 autoCapitalize: 'none',
+                                style: { backgroundColor: 'white', marginBottom: 30 },
+
                             },
                         },
+
                     ]}>
                     <Button
                         mode={'contained'}
