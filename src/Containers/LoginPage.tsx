@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, ScrollView, Text } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
 import FormBuilder from 'react-native-paper-form-builder';
 import { useForm } from 'react-hook-form';
-import { Button } from 'react-native-paper';
 import * as Routes from '../routes';
-import { Link } from "react-router-native";
-
 import { loginRequest } from '../State/Actions/App/index';
 import AppLinkButton from '../Components/AppLinkButton';
 
-interface ILoginDetails {
+export interface ILoginDetails {
     phoneNumber: string;
     fullName: string;
 }
@@ -21,9 +18,6 @@ const LoginPage: React.FunctionComponent = () => {
     const dispatch: Dispatch = useDispatch();
 
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-    const [phone, setPhone] = useState<string>('');
-    const [name, setName] = useState<string>('');
-
 
     const form = useForm({
         defaultValues: {
@@ -32,6 +26,11 @@ const LoginPage: React.FunctionComponent = () => {
         },
         mode: 'onChange',
     });
+
+    const handleLogin = (loginDetails: ILoginDetails) => {
+        console.log('from login ', loginDetails);
+        dispatch(loginRequest(loginDetails));
+    }
 
     return (
         <View style={styles.containerStyle}>
@@ -76,15 +75,12 @@ const LoginPage: React.FunctionComponent = () => {
 
                             },
                         },
-
                     ]}>
                     <AppLinkButton
                         title='Log-in'
                         color='#6200ee'
                         linkTo={Routes.PROFILE}
-                        onPress={form.handleSubmit((data: ILoginDetails) => {
-                            dispatch(loginRequest(data.phoneNumber, data.fullName));
-                        })} />
+                        onPress={form.handleSubmit((data: ILoginDetails) => handleLogin(data))} />
                 </FormBuilder>
             </ScrollView>
         </View>

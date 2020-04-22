@@ -19,7 +19,8 @@ export function appReducer(state: IAppState = initialState, action: AppActionTyp
     return produce(state, draft => {
         switch (action.type) {
             case LOGIN_REQUEST:
-                draft.loginDetails = { phoneNumber: action.phoneNumber, fullName: action.fullName };
+                draft.loginDetails = action.loginDetails;
+                console.log('from reducer ',draft.loginDetails);
                 break;
         }
     });
