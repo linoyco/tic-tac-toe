@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, StyleSheet, Alert, Text, ScrollView } from 'react-native';
-import * as routes from '../routes';
+import * as routes from '../Lib/routes';
 import AppLinkButton from '../Components/AppLinkButton';
 // import { MaterialCommunityIcons as Icon } from 'react-native-vector-icons';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
