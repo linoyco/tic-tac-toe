@@ -130,10 +130,13 @@ const Game: React.FunctionComponent = () => {
 const styles = StyleSheet.create({
     container: {
         width: '80%',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     scrollViewStyle: {
         padding: 15,
         justifyContent: 'center',
+        alignItems: 'center'
     },
     headingStyle: {
         fontSize: 30,
@@ -147,7 +150,7 @@ const styles = StyleSheet.create({
     tile: {
         alignItems: 'center',
         justifyContent: 'center',
-        borderWidth: 2,
+        borderWidth: 1,
         width: 100,
         height: 100
     },
