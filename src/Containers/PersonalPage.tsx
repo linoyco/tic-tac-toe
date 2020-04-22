@@ -34,7 +34,7 @@ const PersonalPage: React.FunctionComponent = () => {
         if(topPlayers.length === 0){
             return <View></View>
         } else {
-            topPlayers.map((player: IPlayerStats) => (
+           return topPlayers.map((player: IPlayerStats) => (
                 <DataTable.Row>
                     <DataTable.Cell>{player.fullName}</DataTable.Cell>
                     <DataTable.Cell>{player.phoneNumber}</DataTable.Cell>
@@ -67,7 +67,6 @@ const PersonalPage: React.FunctionComponent = () => {
     return (
         <StyledView>
             <StyledHeader>Hello, {name}</StyledHeader>
-
             <StyledHeader>Top 5 players!</StyledHeader>
             <DataTable>
                 <DataTable.Header>
