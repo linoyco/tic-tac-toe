@@ -15,12 +15,12 @@ const StyledView: any = styled(View)`
 const StyledHeader = styled(Text)`
     font-weight: bold;
     font-size: 30px;
-    margin-bottom: 40%;
 `;
 
 const HomePage: React.FunctionComponent = () => (
     <StyledView>
-        <StyledHeader>Welcome to tic tac toe!</StyledHeader>
+        <StyledHeader>Welcome to</StyledHeader>
+        <StyledHeader style={{marginBottom:150}}>Tic Tac Toe!</StyledHeader>
         <AppLinkButton
             title='Please login'
             linkTo={`${routes.LOGIN}`}

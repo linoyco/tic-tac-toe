@@ -52,7 +52,7 @@ const LoginPage: React.FunctionComponent = () => {
                                 },
                             },
                             textInputProps: {
-                                keyboardType: 'phone-pad',
+                                keyboardType: 'decimal-pad',
                                 autoCapitalize: 'none',
                                 style: { backgroundColor: 'white' },
                             },
@@ -69,10 +69,9 @@ const LoginPage: React.FunctionComponent = () => {
                                 },
                             },
                             textInputProps: {
-                                keyboardType: 'name-phone-pad',
-                                autoCapitalize: 'none',
+                                keyboardType: 'default',
+                                autoCapitalize: 'words',
                                 style: { backgroundColor: 'white' },
-
                             },
                         },
                     ]}>
