@@ -5,7 +5,6 @@ import { Dispatch } from 'redux';
 import FormBuilder from 'react-native-paper-form-builder';
 import { useForm } from 'react-hook-form';
 
-import * as Routes from '../Lib/routes';
 import { loginRequest } from '../State/Actions/App/index';
 import AppLinkButton from '../Components/AppLinkButton';
 

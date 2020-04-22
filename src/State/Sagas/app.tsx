@@ -1,4 +1,5 @@
-import { put, take, call } from 'redux-saga/effects';
+import { take, call } from 'redux-saga/effects';
+
 import * as Routes from '../../Lib/routes';
 import * as RootNavigation from '../../Lib/RootNavigation';
 import { LOGIN_REQUEST } from '../Actions/App/types';

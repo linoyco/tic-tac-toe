@@ -9,11 +9,6 @@ import Game from './Game';
 import LoginPage from './LoginPage';
 import PersonalPage from './PersonalPage';
 
-export const navigateToLogin = (navigation) => {
-    console.log("clicked")
-    navigation.navigate(Routes.LOGIN)
-}
-
 type RootStackParamList = {
     Home: undefined;
     Profile: { userId: string };
@@ -27,7 +22,7 @@ type ProfileScreenNavigationProp = StackNavigationProp<
     'Profile'
 >;
 
-export type IRouteProps = {
+export interface IRouteProps {
     route: ProfileScreenRouteProp;
     navigation: ProfileScreenNavigationProp;
 };
