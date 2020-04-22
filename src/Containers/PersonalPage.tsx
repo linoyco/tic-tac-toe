@@ -27,10 +27,6 @@ const PersonalPage: React.FunctionComponent = () => {
 
     const name = useSelector((state: any) => state.app.loginDetails.fullName);
 
-    useEffect(() => {
-        console.log('from useEffect', name);
-    });
-
     const handleLogOut = () => {
         dispatch(loginRequest({ phoneNumber: '', fullName: '' }));
     }

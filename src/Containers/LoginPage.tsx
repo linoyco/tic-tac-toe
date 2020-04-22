@@ -28,7 +28,6 @@ const LoginPage: React.FunctionComponent = () => {
     });
 
     const handleLogin = (loginDetails: ILoginDetails) => {
-        console.log('from login ', loginDetails);
         dispatch(loginRequest(loginDetails));
     }
 
