@@ -7,3 +7,10 @@ export function loginRequest(loginDetails: ILoginDetails): AppActions.ILoginRequ
         loginDetails: loginDetails
     }
 }
+
+export function tableRequest(loginDetails: ILoginDetails) :AppActions.ITableRequest {
+    return {
+        type: AppActions.TABLE_REQUEST,
+        loginDetails:loginDetails
+    }
+}
