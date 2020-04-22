@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from "react-router-native";
 import { Button } from 'react-native-paper';
 import styled from "styled-components";
+import { View } from 'react-native';
 
 interface IStyleProps {
     color?: string;
@@ -18,16 +18,15 @@ const StyledButton: any = styled(Button) <IStyleProps>`
 
 interface IProps {
     title: string;
-    linkTo?: string;
     color?: string;
     style?: any;
     onPress?: any;
 }
 
-const AppLinkButton: React.FunctionComponent<IProps> = ({ title, color, linkTo = '', style, onPress }) => (
-    <Link to={linkTo} style={{ width: '100%' }}>
+const AppLinkButton: React.FunctionComponent<IProps> = ({ title, color, style, onPress }) => (
+    <View style={{ width: '100%' }} >
         <StyledButton onPress={onPress} color={color} mode={'contained'} style={style || ''}>{title}</StyledButton>
-    </Link>
+    </View>
 );
 
 export default AppLinkButton;

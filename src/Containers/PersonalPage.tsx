@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, Text } from 'react-native';
-import AppLinkButton from '../Components/AppLinkButton';
-import * as routes from '../routes';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { loginRequest } from '../State/Actions/App';
 import { Dispatch } from 'redux';
-import { useDispatch } from 'react-redux';
+
+import AppLinkButton from '../Components/AppLinkButton';
+import * as Routes from '../Lib/routes';
+import { loginRequest } from '../State/Actions/App';
+import * as RootNavigation from '../Lib/RootNavigation';
 
 const StyledView: any = styled(View)`
     display: flex;
@@ -29,6 +30,7 @@ const PersonalPage: React.FunctionComponent = () => {
 
     const handleLogOut = () => {
         dispatch(loginRequest({ phoneNumber: '', fullName: '' }));
+        RootNavigation.navigate(Routes.HOME, null);
     }
 
     return (
@@ -36,12 +38,11 @@ const PersonalPage: React.FunctionComponent = () => {
             <StyledHeader>Hello, {name}</StyledHeader>
             <AppLinkButton
                 title='Start to play !'
-                linkTo={`${routes.GAME}`}
+                onPress={() => RootNavigation.navigate(Routes.GAME, null)}
                 color='#A6F2A6'
             />
             <AppLinkButton
                 title='Log out'
-                linkTo={`${routes.HOME}`}
                 color='#636364'
                 onPress={() => handleLogOut()}
             />

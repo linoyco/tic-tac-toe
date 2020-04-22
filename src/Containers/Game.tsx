@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, StyleSheet, Alert, Text, ScrollView } from 'react-native';
-import * as routes from '../Lib/routes';
-import AppLinkButton from '../Components/AppLinkButton';
-// import { MaterialCommunityIcons as Icon } from 'react-native-vector-icons';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Button } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import * as Routes from '../Lib/routes';
+import AppLinkButton from '../Components/AppLinkButton';
+import * as RootNavigation from '../Lib/RootNavigation';
 
 const Game: React.FunctionComponent = () => {
 
@@ -135,8 +136,16 @@ const Game: React.FunctionComponent = () => {
                     </TouchableOpacity>
                 </View>
 
-                <Button color='black' mode='contained' onPress={() => resetBoard()} style={styles.reset}>Restart! <Icon style={styles.resetIcon} name='restore' /></Button>
-                <AppLinkButton title='Stop playing' linkTo={routes.PROFILE} color='#636364' />
+                <Button
+                    color='black'
+                    mode='contained'
+                    onPress={() => resetBoard()}
+                    style={styles.reset}>Restart! <Icon style={styles.resetIcon} name='restore' /></Button>
+
+                <AppLinkButton
+                    title='Stop playing'
+                    onPress={() => RootNavigation.navigate(Routes.PROFILE, null)}
+                    color='#636364' />
             </ScrollView>
         </View>
     );

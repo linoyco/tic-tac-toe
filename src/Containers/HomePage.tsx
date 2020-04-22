@@ -1,8 +1,11 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import styled from 'styled-components';
-import * as routes from '../routes';
+
+import * as Routes from '../Lib/routes';
 import AppLinkButton from '../Components/AppLinkButton';
+import * as RootNavigation from '../Lib/RootNavigation';
+import { IRouteProps, navigateToLogin } from './AppRouter';
 
 const StyledView: any = styled(View)`
     display: flex;
@@ -17,13 +20,14 @@ const StyledHeader = styled(Text)`
     font-size: 30px;
 `;
 
-const HomePage: React.FunctionComponent = () => (
+const HomePage = ({ navigation }: IRouteProps) => (
     <StyledView>
         <StyledHeader>Welcome to</StyledHeader>
-        <StyledHeader style={{marginBottom:150}}>Tic Tac Toe!</StyledHeader>
+        <StyledHeader style={{ marginBottom: 150 }}>Tic Tac Toe!</StyledHeader>
         <AppLinkButton
             title='Please login'
-            linkTo={`${routes.LOGIN}`}
+            // onPress={() => RootNavigation.navigate(Routes.GAME, null)}
+            onPress={() => navigateToLogin(navigation)}
             color='#6200ee'
         />
     </StyledView>

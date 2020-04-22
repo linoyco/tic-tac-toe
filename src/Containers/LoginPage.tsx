@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, StyleSheet, ScrollView, Text } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
 import FormBuilder from 'react-native-paper-form-builder';
 import { useForm } from 'react-hook-form';
+
 import * as Routes from '../Lib/routes';
 import { loginRequest } from '../State/Actions/App/index';
 import AppLinkButton from '../Components/AppLinkButton';
@@ -16,8 +17,6 @@ export interface ILoginDetails {
 const LoginPage: React.FunctionComponent = () => {
 
     const dispatch: Dispatch = useDispatch();
-
-    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
     const form = useForm({
         defaultValues: {
@@ -77,7 +76,6 @@ const LoginPage: React.FunctionComponent = () => {
                     <AppLinkButton
                         title='Log-in'
                         color='#6200ee'
-                        linkTo={Routes.PROFILE}
                         onPress={form.handleSubmit((data: ILoginDetails) => handleLogin(data))} />
                 </FormBuilder>
             </ScrollView>
