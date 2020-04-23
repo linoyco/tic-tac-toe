@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
-import styled from 'styled-components';
-import { Dispatch } from 'redux';
-import { DataTable } from 'react-native-paper';
+import React, { useEffect } from "react";
+import { View, Text, StyleSheet } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
+import styled from "styled-components";
+import { Dispatch } from "redux";
+import { DataTable, ActivityIndicator, Colors } from "react-native-paper";
 
-import AppLinkButton from '../Components/AppLinkButton';
-import * as Routes from '../Lib/routes';
-import { loginRequest, tableRequest } from '../State/Actions/App';
-import * as RootNavigation from '../Lib/RootNavigation';
+import AppLinkButton from "../Components/AppLinkButton";
+import * as Routes from "../Lib/routes";
+import { loginRequest, tableRequest } from "../State/Actions/App";
+import * as RootNavigation from "../Lib/RootNavigation";
 
 const StyledView: any = styled(View)`
     display: flex;
@@ -28,7 +28,7 @@ const PersonalPage: React.FunctionComponent = () => {
     const dispatch: Dispatch = useDispatch();
 
     const loginDetails = useSelector((state: any) => state.app.loginDetails);
-
+    const loading = useSelector((state: any) => state.app.loading);
     let topPlayers = useSelector((state: any) => state.app.topPlayersTable);
 
     useEffect(() => {
@@ -37,7 +37,10 @@ const PersonalPage: React.FunctionComponent = () => {
 
     const mapTable = () => {
         if (topPlayers.length === 0) {
-            return (<View></View>);
+            return <View></View>;
+        } else if (loading) {
+            <Text style={styles.tableHeader}>Loading data...</Text>;
+            return <ActivityIndicator animating={true} color={Colors.red800} />;
         } else {
             return (
                 <DataTable style={styles.table}>
@@ -50,18 +53,21 @@ const PersonalPage: React.FunctionComponent = () => {
                     {topPlayers.map((player, idx) => (
                         <DataTable.Row key={idx}>
                             <DataTable.Cell>{player.fullName}</DataTable.Cell>
-                            <DataTable.Cell>{player.phoneNumber}</DataTable.Cell>
+                            <DataTable.Cell>
+                                {player.phoneNumber}
+                            </DataTable.Cell>
                             <DataTable.Cell numeric={true}>
                                 {player.numberOfWins}
                             </DataTable.Cell>
                         </DataTable.Row>
                     ))}
-                </DataTable>);
+                </DataTable>
+            );
         }
-    }
+    };
 
     const handleLogOut = () => {
-        dispatch(loginRequest({ phoneNumber: '', fullName: '' }));
+        dispatch(loginRequest({ phoneNumber: "", fullName: "" }));
         RootNavigation.navigate(Routes.HOME, null);
     };
 
@@ -90,15 +96,14 @@ const PersonalPage: React.FunctionComponent = () => {
 const styles = StyleSheet.create({
     table: {
         padding: 5,
-        justifyContent: 'center',
-        marginBottom: '10%',
-
+        justifyContent: "center",
+        marginBottom: "10%",
     },
     tableHeader: {
         fontSize: 20,
-        textAlign: 'center',
-        marginBottom: '3%',
-        fontWeight: 'bold'
+        textAlign: "center",
+        marginBottom: "3%",
+        fontWeight: "bold",
     },
 });
 

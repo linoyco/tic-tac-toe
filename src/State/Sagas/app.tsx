@@ -19,10 +19,9 @@ export function* watchLoginRequest() {
     }
 }
 
-function* tableRequestFlow() {
+export function* tableRequestFlow() {
     try {
         yield console.log("Doing some internet stuff to get the table");
-
     } catch (error) {
         console.log(error);
     }

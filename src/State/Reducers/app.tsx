@@ -1,9 +1,8 @@
 import produce from "immer";
-
 import { AppActionTypes, LOGIN_REQUEST, TABLE_REQUEST } from "../Actions/App/types";
 import { demoTable } from "../../Lib/demoTable";
 import { ILoginDetails } from "../../Containers/LoginPage";
-
+ 
 export interface IPlayerStats {
     fullName: string;
     phoneNumber: string;
@@ -23,7 +22,7 @@ const initialState: IAppState = {
     topPlayersTable: [],
 }
 
-export function appReducer(state: IAppState = initialState, action: AppActionTypes) {
+export default  function appReducer(state: IAppState = initialState, action: AppActionTypes) {
     return produce(state, draft => {
         switch (action.type) {
             case LOGIN_REQUEST:
@@ -32,6 +31,9 @@ export function appReducer(state: IAppState = initialState, action: AppActionTyp
             case TABLE_REQUEST:
                 draft.topPlayersTable = demoTable;
                 break;
+            default:
+                return state;
         }
+        
     });
 }

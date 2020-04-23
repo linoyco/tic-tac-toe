@@ -16,7 +16,7 @@ const StyledView: any = styled(View)`
 
 const StyledHeader = styled(Text)`
     font-weight: bold;
-    font-size: 30px;
+    font-size: 25px;
 `;
 
 const HomePage = () => (
