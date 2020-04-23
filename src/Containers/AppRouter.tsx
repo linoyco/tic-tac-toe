@@ -1,6 +1,6 @@
 import React from 'react';
-import { NavigationContainer, RouteProp } from '@react-navigation/native';
-import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import { navigationRef } from '../Lib/RootNavigation';
 import * as Routes from '../Lib/routes';
@@ -8,24 +8,6 @@ import HomePage from './HomePage';
 import Game from './Game';
 import LoginPage from './LoginPage';
 import PersonalPage from './PersonalPage';
-
-type RootStackParamList = {
-    Home: undefined;
-    Profile: { userId: string };
-    Feed: { sort: 'latest' | 'top' } | undefined;
-};
-
-type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'Profile'>;
-
-type ProfileScreenNavigationProp = StackNavigationProp<
-    RootStackParamList,
-    'Profile'
->;
-
-export interface IRouteProps {
-    route: ProfileScreenRouteProp;
-    navigation: ProfileScreenNavigationProp;
-};
 
 const Stack = createStackNavigator();
 

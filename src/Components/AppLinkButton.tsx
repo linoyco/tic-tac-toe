@@ -25,7 +25,7 @@ interface IProps {
 
 const AppLinkButton: React.FunctionComponent<IProps> = ({ title, color, style, onPress }) => (
     <View style={{ width: '100%' }} >
-        <StyledButton onPress={onPress} color={color} mode={'contained'} style={style || ''}>{title}</StyledButton>
+        <StyledButton onPress={onPress} color={color} mode={'contained'} style={style}>{title}</StyledButton>
     </View>
 );
 

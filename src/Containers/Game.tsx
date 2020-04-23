@@ -14,6 +14,7 @@ const Game: React.FunctionComponent = () => {
         [0, 0, 0],
         [0, 0, 0]
     ]);
+
     const [currentPlayer, setCurrentPlayer] = useState<number>(1);
 
     const resetBoard = () => {
@@ -36,16 +37,17 @@ const Game: React.FunctionComponent = () => {
             let nextPlayer: number = (currentPlayer === 1) ? -1 : 1;
             setCurrentPlayer(nextPlayer);
         }
+
         let winner = checkWinner();
-        if (winner === 1) {
+
+        if (winner === 4) {
+            Alert.alert('No one wins');
+            resetBoard();
+        } else if (winner === 1) {
             Alert.alert('player 1 is winner !');
             resetBoard();
         } else if (winner === -1) {
             Alert.alert('player 2 is winner !');
-            resetBoard();
-        }
-        if (winner === 4) {
-            Alert.alert('No one wins');
             resetBoard();
         }
     }

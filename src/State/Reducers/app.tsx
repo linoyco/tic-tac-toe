@@ -1,10 +1,9 @@
 import produce from "immer";
-import {
-    AppActionTypes,
-    LOGIN_REQUEST,
-    TABLE_REQUEST,
-} from "../Actions/App/types";
-import {demoTable} from "../../demoTable"
+
+import { AppActionTypes, LOGIN_REQUEST, TABLE_REQUEST } from "../Actions/App/types";
+import { demoTable } from "../../Lib/demoTable";
+import { ILoginDetails } from "../../Containers/LoginPage";
+
 export interface IPlayerStats {
     fullName: string;
     phoneNumber: string;
@@ -12,40 +11,27 @@ export interface IPlayerStats {
 }
 
 export interface IAppState {
-    readonly loginDetails: {
-        phoneNumber: string;
-        fullName: string;
-    };
+    readonly loginDetails: ILoginDetails;
     readonly topPlayersTable: Array<IPlayerStats>;
 }
 
 const initialState: IAppState = {
     loginDetails: {
-        phoneNumber: "",
-        fullName: "",
+        phoneNumber: '',
+        fullName: '',
     },
     topPlayersTable: [],
-};
+}
 
-export function appReducer(
-    state: IAppState = initialState,
-    action: AppActionTypes
-) {
-    return produce(state, (draft) => {
+export function appReducer(state: IAppState = initialState, action: AppActionTypes) {
+    return produce(state, draft => {
         switch (action.type) {
             case LOGIN_REQUEST:
                 draft.loginDetails = action.loginDetails;
-                console.log("from reducer ", draft.loginDetails);
                 break;
             case TABLE_REQUEST:
-                draft.topPlayersTable=demoTable;
-                console.log(
-                    "from reducer table request top players",
-                    draft.topPlayersTable
-                );
+                draft.topPlayersTable = demoTable;
                 break;
-            default:
-                return state;
         }
     });
 }

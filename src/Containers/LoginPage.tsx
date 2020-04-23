@@ -17,7 +17,7 @@ const LoginPage: React.FunctionComponent = () => {
 
     const dispatch: Dispatch = useDispatch();
 
-    const form = useForm({
+    const form = useForm<ILoginDetails>({
         defaultValues: {
             phoneNumber: '',
             fullName: '',

@@ -1,5 +1,5 @@
-import * as AppActions from './types'
-import { ILoginDetails } from '../../../Containers/LoginPage'
+import * as AppActions from './types';
+import { ILoginDetails } from '../../../Containers/LoginPage';
 
 export function loginRequest(loginDetails: ILoginDetails): AppActions.ILoginRequest {
     return {

@@ -12,19 +12,19 @@ function* loginRequestFlow() {
     }
 }
 
-function* tableRequestFlow() {
-    try {
-       yield console.log("Doing some internet stuff to get the table");
-       
-    } catch (error) {
-        console.log(error);
-    }
-}
-
 export function* watchLoginRequest() {
     while (true) {
         yield take(LOGIN_REQUEST);
         yield call(loginRequestFlow);
+    }
+}
+
+function* tableRequestFlow() {
+    try {
+        yield console.log("Doing some internet stuff to get the table");
+
+    } catch (error) {
+        console.log(error);
     }
 }
 
