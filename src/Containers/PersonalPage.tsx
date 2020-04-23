@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { Dispatch } from 'redux';
@@ -21,7 +21,7 @@ const StyledView: any = styled(View)`
 const StyledHeader = styled(Text)`
     font-weight: bold;
     font-size: 30px;
-    margin-bottom: 40%;
+    margin-bottom: 20%;
 `;
 
 const PersonalPage: React.FunctionComponent = () => {
@@ -40,8 +40,8 @@ const PersonalPage: React.FunctionComponent = () => {
             return (<View></View>);
         } else {
             return (
-                <DataTable>
-                    <Text>Top 5 players!</Text>
+                <DataTable style={styles.table}>
+                    <Text style={styles.tableHeader}>Top 5 players!</Text>
                     <DataTable.Header>
                         <DataTable.Title>Name</DataTable.Title>
                         <DataTable.Title numeric>Phone Number</DataTable.Title>
@@ -86,4 +86,20 @@ const PersonalPage: React.FunctionComponent = () => {
         </StyledView>
     );
 };
+
+const styles = StyleSheet.create({
+    table: {
+        padding: 5,
+        justifyContent: 'center',
+        marginBottom: '10%',
+
+    },
+    tableHeader: {
+        fontSize: 20,
+        textAlign: 'center',
+        marginBottom: '3%',
+        fontWeight: 'bold'
+    },
+});
+
 export default PersonalPage;
