@@ -14,12 +14,7 @@ const Stack = createStackNavigator();
 
 const AppRouter = () => (
     <NavigationContainer ref={navigationRef} >
-        <Stack.Navigator
-            screenOptions={{
-                // headerShown: false,
-                cardStyle: styles.containerStyle
-            }}
-            initialRouteName={Routes.HOME}>
+        <Stack.Navigator screenOptions={{ cardStyle: styles.containerStyle, headerTitle: '' }} initialRouteName={Routes.HOME}>
             <Stack.Screen name={Routes.HOME} component={HomePage} />
             <Stack.Screen name={Routes.LOGIN} component={LoginPage} />
             <Stack.Screen name={Routes.PROFILE} component={PersonalPage} />
