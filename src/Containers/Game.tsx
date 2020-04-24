@@ -74,19 +74,15 @@ const Game: React.FunctionComponent = () => {
 
         sum = gameArr[2][0] + gameArr[1][1] + gameArr[0][2];
         if (sum === 3) { return 1; } else if (sum === -3) { return -1; }
-
+        let num: number = 4;
         for (let i = 0; i < NUM_TILES; i++) {
-            let num: number = 4;
-
             for (let j of gameArr[i]) {
                 if (j === 0) {
                     num = 0;
                 }
             }
-            return num;
         }
-
-        return 0;
+        return num;
     }
 
     const renderIcon = (row: number, column: number) => {
