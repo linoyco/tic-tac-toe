@@ -80,8 +80,6 @@ const LoginPage: React.FunctionComponent = () => {
     );
 }
 
-
-
 const styles = StyleSheet.create({
     containerStyle: {
         flex: 1,

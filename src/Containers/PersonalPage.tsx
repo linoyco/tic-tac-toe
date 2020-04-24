@@ -17,6 +17,7 @@ const StyledView: any = styled(View)`
     width: 80%;
     height: 80%;
     margin: 10%;
+    padding: 15px;
 `;
 
 const StyledHeader = styled(Text)`
