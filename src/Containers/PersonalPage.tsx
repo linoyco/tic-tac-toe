@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import styled from 'styled-components';
 import { Dispatch } from 'redux';
 import { DataTable } from 'react-native-paper';
 
@@ -9,22 +8,6 @@ import AppLinkButton from '../Components/AppLinkButton';
 import * as Routes from '../Lib/routes';
 import { loginRequest, tableRequest } from '../State/Actions/App';
 import * as RootNavigation from '../Lib/RootNavigation';
-
-const StyledView: any = styled(View)`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 80%;
-    height: 80%;
-    margin: 10%;
-    padding: 15px;
-`;
-
-const StyledHeader = styled(Text)`
-    font-weight: bold;
-    font-size: 30px;
-    margin-bottom: 20%;
-`;
 
 const PersonalPage: React.FunctionComponent = () => {
     const dispatch: Dispatch = useDispatch();
@@ -74,8 +57,8 @@ const PersonalPage: React.FunctionComponent = () => {
     };
 
     return (
-        <StyledView>
-            <StyledHeader>Hello, {loginDetails.fullName}</StyledHeader>
+        <View style={styles.container}>
+            <Text style={styles.headingStyle}>Hello, {loginDetails.fullName}</Text>
             {mapTable()}
             <AppLinkButton
                 title="Start to play !"
@@ -88,11 +71,25 @@ const PersonalPage: React.FunctionComponent = () => {
                 onPress={() => handleLogOut()}
             />
             <Text style={{ color: 'red' }}>{errorMessage || ''}</Text>
-        </StyledView>
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        width: '80%',
+        height: '80%',
+        padding: '5%',
+        justifyContent: 'center',
+        margin: '10%'
+    },
+    headingStyle: {
+        fontSize: 30,
+        textAlign: 'center',
+        marginBottom: '20%',
+        fontWeight: 'bold'
+    },
     table: {
         padding: 5,
         justifyContent: 'center',

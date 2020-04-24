@@ -33,7 +33,7 @@ const LoginPage: React.FunctionComponent = () => {
     }
 
     return (
-        <View style={styles.containerStyle}>
+        <View style={styles.container}>
             <Text style={styles.headingStyle}>LOGIN</Text>
 
             <FormBuilder
@@ -85,18 +85,18 @@ const LoginPage: React.FunctionComponent = () => {
 }
 
 const styles = StyleSheet.create({
-    containerStyle: {
+    container: {
         flex: 1,
         width: '80%',
         height: '80%',
-        padding: 15,
+        padding: '5%',
         justifyContent: 'center',
         margin: '10%'
     },
     headingStyle: {
         fontSize: 30,
         textAlign: 'center',
-        marginBottom: 40,
+        marginBottom: '20%',
         fontWeight: 'bold'
     },
 });
