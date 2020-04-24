@@ -1,12 +1,13 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, Text } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { View, StyleSheet, Text } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
 import FormBuilder from 'react-native-paper-form-builder';
 import { useForm } from 'react-hook-form';
 
 import { loginRequest } from '../State/Actions/App/index';
 import AppLinkButton from '../Components/AppLinkButton';
+
 
 export interface ILoginDetails {
     phoneNumber: string;
@@ -16,6 +17,8 @@ export interface ILoginDetails {
 const LoginPage: React.FunctionComponent = () => {
 
     const dispatch: Dispatch = useDispatch();
+
+    const errorMessage = useSelector((state: any) => state.app.errorMessage);
 
     const form = useForm<ILoginDetails>({
         defaultValues: {
@@ -76,6 +79,7 @@ const LoginPage: React.FunctionComponent = () => {
                     color='#6200ee'
                     onPress={form.handleSubmit((data: ILoginDetails) => handleLogin(data))} />
             </FormBuilder>
+            <Text style={{ color: 'red' }}>{errorMessage || ''}</Text>
         </View>
     );
 }

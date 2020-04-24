@@ -1,6 +1,6 @@
 import produce from "immer";
 
-import { AppActionTypes, LOGIN_REQUEST, TABLE_REQUEST } from "../Actions/App/types";
+import { AppActionTypes, LOGIN_REQUEST, TABLE_REQUEST, ERROR_MESSAGE } from "../Actions/App/types";
 import { demoTable } from "../../Lib/demoTable";
 import { ILoginDetails } from "../../Containers/LoginPage";
 
@@ -13,6 +13,7 @@ export interface IPlayerStats {
 export interface IAppState {
     readonly loginDetails: ILoginDetails;
     readonly topPlayersTable: Array<IPlayerStats>;
+    readonly errorMessage: string;
 }
 
 const initialState: IAppState = {
@@ -21,6 +22,7 @@ const initialState: IAppState = {
         fullName: '',
     },
     topPlayersTable: [],
+    errorMessage: ''
 }
 
 export function appReducer(state: IAppState = initialState, action: AppActionTypes) {
@@ -31,6 +33,9 @@ export function appReducer(state: IAppState = initialState, action: AppActionTyp
                 break;
             case TABLE_REQUEST:
                 draft.topPlayersTable = demoTable;
+                break;
+            case ERROR_MESSAGE:
+                draft.errorMessage = action.error;
                 break;
         }
     });

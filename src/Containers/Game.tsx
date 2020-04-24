@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, TouchableOpacity, StyleSheet, Alert, Text, ScrollView } from 'react-native';
 import { Button } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useSelector } from 'react-redux';
 
 import * as Routes from '../Lib/routes';
 import AppLinkButton from '../Components/AppLinkButton';
@@ -16,6 +17,8 @@ const Game: React.FunctionComponent = () => {
     ]);
 
     const [currentPlayer, setCurrentPlayer] = useState<number>(1);
+
+    const errorMessage = useSelector((state: any) => state.app.errorMessage);
 
     const resetBoard = () => {
         setGameArr([
@@ -149,6 +152,7 @@ const Game: React.FunctionComponent = () => {
                     onPress={() => RootNavigation.navigate(Routes.PROFILE, null)}
                     color='#636364' />
             </ScrollView>
+            <Text style={{ color: 'red' }}>{errorMessage || ''}</Text>
         </View>
     );
 }

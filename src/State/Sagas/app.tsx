@@ -1,14 +1,16 @@
-import { take, call } from "redux-saga/effects";
+import { take, call, put } from "redux-saga/effects";
 
 import * as Routes from "../../Lib/routes";
 import * as RootNavigation from "../../Lib/RootNavigation";
-import { LOGIN_REQUEST, TABLE_REQUEST } from "../Actions/App/types";
+import { LOGIN_REQUEST, TABLE_REQUEST, ERROR_MESSAGE } from "../Actions/App/types";
 
 function* loginRequestFlow() {
     try {
+        yield put({ type: ERROR_MESSAGE, error: '' });
+
         yield RootNavigation.navigate(Routes.PROFILE, null);
     } catch (error) {
-        console.log(error);
+        yield put({ type: ERROR_MESSAGE, error: error.message });
     }
 }
 
@@ -21,10 +23,12 @@ export function* watchLoginRequest() {
 
 function* tableRequestFlow() {
     try {
+        yield put({ type: ERROR_MESSAGE, error: '' });
+
         yield console.log("Doing some internet stuff to get the table");
 
     } catch (error) {
-        console.log(error);
+        yield put({ type: ERROR_MESSAGE, error: error.message });
     }
 }
 

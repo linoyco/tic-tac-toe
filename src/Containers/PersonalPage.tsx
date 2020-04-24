@@ -33,6 +33,8 @@ const PersonalPage: React.FunctionComponent = () => {
 
     let topPlayers = useSelector((state: any) => state.app.topPlayersTable);
 
+    const errorMessage = useSelector((state: any) => state.app.errorMessage);
+
     useEffect(() => {
         handleTableReuqest();
     });
@@ -85,6 +87,7 @@ const PersonalPage: React.FunctionComponent = () => {
                 color="#636364"
                 onPress={() => handleLogOut()}
             />
+            <Text style={{ color: 'red' }}>{errorMessage || ''}</Text>
         </StyledView>
     );
 };
