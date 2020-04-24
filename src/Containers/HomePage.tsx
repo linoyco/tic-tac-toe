@@ -11,7 +11,8 @@ const StyledView: any = styled(View)`
     align-items: center;
     justify-content: center;
     width: 80%;
-    height: 100%;
+    height: 80%;
+    margin: 10%;
 `;
 
 const StyledHeader = styled(Text)`

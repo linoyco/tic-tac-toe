@@ -155,9 +155,12 @@ const Game: React.FunctionComponent = () => {
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         width: '80%',
+        height: '80%',
+        padding: 15,
         justifyContent: 'center',
-        alignItems: 'center'
+        margin: '10%'
     },
     scrollViewStyle: {
         padding: 15,
