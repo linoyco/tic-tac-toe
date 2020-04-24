@@ -1,13 +1,21 @@
 import { take, call, put } from "redux-saga/effects";
-
 import * as Routes from "../../Lib/routes";
 import * as RootNavigation from "../../Lib/RootNavigation";
-import { LOGIN_REQUEST, TABLE_REQUEST, ERROR_MESSAGE } from "../Actions/App/types";
+import * as HttpRequests from "../../Api/App";
+import {
+    LOGIN_REQUEST,
+    TABLE_REQUEST,
+    ERROR_MESSAGE,
+} from "../Actions/App/types";
+import { ILoginDetails } from "../../Containers/LoginPage";
 
-function* loginRequestFlow() {
+function* loginRequestFlow(loginDetails: ILoginDetails) {
     try {
-        yield put({ type: ERROR_MESSAGE, error: '' });
-
+        yield put({ type: ERROR_MESSAGE, error: "" });
+        
+        const res=yield HttpRequests.loginRequest(loginDetails);
+        console.log(res.data);
+        yield put({type:LOGIN_REQUEST,loginDetails:res.data})
         yield RootNavigation.navigate(Routes.PROFILE, null);
     } catch (error) {
         yield put({ type: ERROR_MESSAGE, error: error.message });
@@ -16,23 +24,22 @@ function* loginRequestFlow() {
 
 export function* watchLoginRequest() {
     while (true) {
-        yield take(LOGIN_REQUEST);
-        yield call(loginRequestFlow);
+        const { loginDetails } = yield take(LOGIN_REQUEST);
+        yield call(loginRequestFlow, loginDetails);
     }
 }
 
 function* tableRequestFlow() {
     try {
-        yield put({ type: ERROR_MESSAGE, error: '' });
+        yield put({ type: ERROR_MESSAGE, error: "" });
 
         yield console.log("Doing some internet stuff to get the table");
-
     } catch (error) {
         yield put({ type: ERROR_MESSAGE, error: error.message });
     }
 }
 
-export function* watchTableReuqest() {
+export function* watchTableRequest() {
     while (true) {
         yield take(TABLE_REQUEST);
         yield call(tableRequestFlow);
