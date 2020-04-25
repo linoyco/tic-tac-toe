@@ -44,14 +44,18 @@ const LoginPage: React.FunctionComponent = () => {
                         name: 'phoneNumber',
                         label: 'Your phone number',
                         rules: {
+                            minLength: {
+                                value: 10,
+                                message: 'Phone number is min 10 numbers'
+                            },
                             required: {
                                 value: true,
                                 message: 'Phone number is required',
                             },
                         },
                         textInputProps: {
-                            keyboardType: 'number-pad',
-                            autoCapitalize: 'none',
+                            textContentType: 'telephoneNumber',
+                            keyboardType: 'phone-pad',
                             style: { backgroundColor: 'white' },
                         },
                     },
@@ -67,8 +71,9 @@ const LoginPage: React.FunctionComponent = () => {
                             },
                         },
                         textInputProps: {
+                            textContentType: 'username',
                             keyboardType: 'default',
-                            autoCapitalize: 'words',
+                            autoCapitalize: 'sentences',
                             style: { backgroundColor: 'white' },
                         },
                     },
