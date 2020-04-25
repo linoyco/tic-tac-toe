@@ -1,19 +1,6 @@
 import React from 'react';
 import { Button } from 'react-native-paper';
-import { View } from 'react-native';
-
-interface IStyleProps {
-    color?: string;
-}
-
-// const StyledButton: any = styled(Button) <IStyleProps>`
-//     font-size: 20px;
-//     margin-top: 10px;
-//     margin-bottom: 10px;
-//     width: 100%;
-//     height: 40px;
-//     background-color: ${(props: IStyleProps) => props.color || '#6200ee'};
-// `;
+import { View, StyleSheet } from 'react-native';
 
 interface IProps {
     title: string;
@@ -23,9 +10,23 @@ interface IProps {
 }
 
 const AppLinkButton: React.FunctionComponent<IProps> = ({ title, color, style, onPress }) => (
-    <View style={{ width: '100%' }} >
-        <Button onPress={onPress} color={color} mode={'contained'} style={style}>{title}</Button>
+    <View style={styles.container} >
+        <Button onPress={onPress} color={color} mode={'contained'} style={[style, styles.buttonStyle]}>{title}</Button>
     </View>
 );
+
+const styles = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+    },
+    buttonStyle: {
+        width: '100%',
+        marginBottom: '2%',
+        marginTop: '2%',
+    }
+});
+
 
 export default AppLinkButton;

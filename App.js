@@ -2,23 +2,11 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import { View, StyleSheet } from 'react-native';
 
 import AppRouter from './src/Containers/AppRouter';
 import { rootReducer } from './src/State/Reducers/index';
 import rootSaga from './src/State/Sagas/index';
-import styled from 'styled-components/native';
-import { View } from 'react-native';
-
-const StyledView = styled.View`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  
-  width: 100%;
-  height: 100%
-`;
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -32,10 +20,20 @@ sagaMiddleware.run(rootSaga);
 
 const App = () => (
   <Provider store={store}>
-    <StyledView>
+    <View style={styles.container}>
       <AppRouter />
-      </StyledView>
+    </View>
   </Provider>
 );
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: '100%',
+  },
+});
 
 export default App;

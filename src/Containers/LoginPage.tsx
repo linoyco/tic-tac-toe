@@ -8,7 +8,6 @@ import { useForm } from 'react-hook-form';
 import { loginRequest } from '../State/Actions/App/index';
 import AppLinkButton from '../Components/AppLinkButton';
 
-
 export interface ILoginDetails {
     phoneNumber: string;
     fullName: string;
