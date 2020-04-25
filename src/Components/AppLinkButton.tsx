@@ -9,9 +9,9 @@ interface IProps {
     onPress?: any;
 }
 
-const AppLinkButton: React.FunctionComponent<IProps> = ({ title, color, style, onPress }) => (
+const AppLinkButton: React.FunctionComponent<IProps> = ({ title, color, onPress }) => (
     <View style={styles.container} >
-        <Button onPress={onPress} color={color} mode={'contained'} style={[style, styles.buttonStyle]}>{title}</Button>
+        <Button onPress={onPress} color={color} mode={'contained'} style={styles.buttonStyle}>{title}</Button>
     </View>
 );
 
@@ -27,6 +27,5 @@ const styles = StyleSheet.create({
         marginTop: '2%',
     }
 });
-
 
 export default AppLinkButton;

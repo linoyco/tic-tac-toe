@@ -4,16 +4,20 @@ import { StyleSheet, View, Text } from 'react-native';
 import * as Routes from '../Lib/routes';
 import AppLinkButton from '../Components/AppLinkButton';
 import * as RootNavigation from '../Lib/RootNavigation';
+import Logo from '../Components/Logo';
 
 const HomePage = () => (
     <View style={styles.container}>
         <Text style={styles.header}>Welcome to</Text>
         <Text style={[styles.header, { marginBottom: '50%' }]}>Tic Tac Toe!</Text>
-        <AppLinkButton
-            title='Please login'
-            onPress={() => RootNavigation.navigate(Routes.LOGIN, null)}
-            color='#6200ee'
-        />
+        <Logo />
+        <View style={styles.logoView}>
+            <AppLinkButton
+                title='Please login'
+                onPress={() => RootNavigation.navigate(Routes.LOGIN, null)}
+                color='#6200ee'
+            />
+        </View>
     </View>
 );
 
@@ -25,11 +29,15 @@ const styles = StyleSheet.create({
         width: '80%',
         height: '80%',
         margin: '10%',
-        padding: 15
+        padding: 15,
     },
     header: {
         fontWeight: 'bold',
-        fontSize: 30
+        fontSize: 30,
+    },
+    logoView: {
+        width: '100%',
+        marginTop: 'auto'
     }
 });
 
