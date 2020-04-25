@@ -6,7 +6,7 @@ import { DataTable } from 'react-native-paper';
 
 import AppLinkButton from '../Components/AppLinkButton';
 import * as Routes from '../Lib/routes';
-import { loginRequest, tableRequest } from '../State/Actions/App';
+import { loginRequest, tableRequest, logoutRequest } from '../State/Actions/App';
 import * as RootNavigation from '../Lib/RootNavigation';
 
 const PersonalPage: React.FunctionComponent = () => {
@@ -31,7 +31,7 @@ const PersonalPage: React.FunctionComponent = () => {
                 <DataTable style={styles.table}>
                     <Text style={styles.tableHeader}>Top 5 players!</Text>
                     <DataTable.Header >
-                        <DataTable.Title >Rank</DataTable.Title>
+                        <DataTable.Title sortDirection="ascending">Rank</DataTable.Title>
                         <DataTable.Title >Full Name</DataTable.Title>
                         <DataTable.Title numeric>Wins</DataTable.Title>
                     </DataTable.Header>
@@ -49,8 +49,7 @@ const PersonalPage: React.FunctionComponent = () => {
     }
 
     const handleLogOut = () => {
-        dispatch(loginRequest({ phoneNumber: '', fullName: '' }));
-        RootNavigation.navigate(Routes.HOME, null);
+        dispatch(logoutRequest());
     };
 
     const handleTableReuqest = () => {

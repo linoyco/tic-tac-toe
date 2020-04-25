@@ -6,6 +6,7 @@ import {
     LOGIN_REQUEST,
     TABLE_REQUEST,
     ERROR_MESSAGE,
+    LOGOUT_REQUEST,
 } from "../Actions/App/types";
 import { ILoginDetails } from "../../Containers/LoginPage";
 
@@ -28,6 +29,22 @@ export function* watchLoginRequest() {
     }
 }
 
+function* logoutRequestFlow() {
+    try {
+        yield RootNavigation.navigate(Routes.HOME, null);
+        console.log("Logging out")
+    } catch (error) {
+        yield put({ type: ERROR_MESSAGE, error: error.message });
+    }
+}
+
+export function* watchLogoutRequest() {
+    while (true) {
+        yield take(LOGOUT_REQUEST);
+        yield call(logoutRequestFlow);
+    }
+}
+
 function* tableRequestFlow(loginDetails: ILoginDetails) {
     try {
         yield put({ type: ERROR_MESSAGE, error: "" });
@@ -40,7 +57,7 @@ function* tableRequestFlow(loginDetails: ILoginDetails) {
 
 export function* watchTableRequest() {
     while (true) {
-        const {loginDetails}=yield take(TABLE_REQUEST);
-        yield call(tableRequestFlow,loginDetails);
+        const { loginDetails } = yield take(TABLE_REQUEST);
+        yield call(tableRequestFlow, loginDetails);
     }
 }
