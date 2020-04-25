@@ -20,31 +20,29 @@ const PersonalPage: React.FunctionComponent = () => {
 
     useEffect(() => {
         handleTableReuqest();
-    },[]);
+    }, []);
 
     const mapTable = () => {
         if (topPlayers.length === 0) {
             return (<View></View>);
         } else {
-            return (
-                
-                <DataTable style={styles.table}>
-                    <Text style={styles.tableHeader}>Top 5 players!</Text>
-                    <DataTable.Header >
-                        <DataTable.Title sortDirection="ascending">Rank</DataTable.Title>
-                        <DataTable.Title >Full Name</DataTable.Title>
-                        <DataTable.Title numeric>Wins</DataTable.Title>
-                    </DataTable.Header>
-                    {topPlayers.map((player, idx) => (
-                        <DataTable.Row key={idx}>
-                            <DataTable.Cell>{player.rank}</DataTable.Cell>
-                            <DataTable.Cell >{player.fullName}</DataTable.Cell>
-                            <DataTable.Cell numeric={true}>
-                                {player.numberOfWins}
-                            </DataTable.Cell>
-                        </DataTable.Row>
-                    ))}
-                </DataTable>);
+            return (<DataTable style={styles.table}>
+                <Text style={styles.tableHeader}>Top 5 players!</Text>
+                <DataTable.Header >
+                    <DataTable.Title sortDirection="ascending" style={{ justifyContent: 'center' }} >Rank</DataTable.Title>
+                    <DataTable.Title style={{ justifyContent: 'center', flex: 2.8 }} >Full Name</DataTable.Title>
+                    <DataTable.Title numeric style={{ justifyContent: 'center' }}>Wins</DataTable.Title>
+                </DataTable.Header>
+                {topPlayers.map((player, idx) => (
+                    <DataTable.Row key={idx}>
+                        <DataTable.Cell style={{ justifyContent: 'center' }}>{player.rank}</DataTable.Cell>
+                        <DataTable.Cell style={{ justifyContent: 'center', flex: 2.8 }} >{player.fullName}</DataTable.Cell>
+                        <DataTable.Cell numeric={true} style={{ justifyContent: 'center' }}>
+                            {player.numberOfWins}
+                        </DataTable.Cell>
+                    </DataTable.Row>
+                ))}
+            </DataTable>);
         }
     }
 
@@ -53,7 +51,7 @@ const PersonalPage: React.FunctionComponent = () => {
     };
 
     const handleTableReuqest = () => {
-        dispatch(tableRequest(loginDetails,[]));
+        dispatch(tableRequest(loginDetails, []));
     };
 
     return (

@@ -49,7 +49,7 @@ const LoginPage: React.FunctionComponent = () => {
                                 message: 'Phone number is min 10 numbers'
                             },
                             required: {
-                                value: true,
+                                value: true, 
                                 message: 'Phone number is required',
                             },
                         },
