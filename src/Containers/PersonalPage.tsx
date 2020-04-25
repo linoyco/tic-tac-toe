@@ -20,7 +20,7 @@ const PersonalPage: React.FunctionComponent = () => {
 
     useEffect(() => {
         handleTableReuqest();
-    });
+    },[]);
 
     const mapTable = () => {
         if (topPlayers.length === 0) {

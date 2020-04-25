@@ -6,10 +6,10 @@ import createSagaMiddleware from 'redux-saga';
 import AppRouter from './src/Containers/AppRouter';
 import { rootReducer } from './src/State/Reducers/index';
 import rootSaga from './src/State/Sagas/index';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import { View } from 'react-native';
 
-const StyledView = styled(View)`
+const StyledView = styled.View`
   display: flex;
   flex-direction: row;
   justify-content: center;
