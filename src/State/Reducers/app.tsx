@@ -1,9 +1,10 @@
 import produce from "immer";
+
 import { AppActionTypes, LOGIN_REQUEST, TABLE_REQUEST, ERROR_MESSAGE, LOGOUT_REQUEST } from "../Actions/App/types";
 import { ILoginDetails } from "../../Containers/LoginPage";
 
 export interface IPlayerStats {
-    rank:string
+    rank: string
     fullName: string;
     numberOfWins: number;
 }
@@ -30,9 +31,9 @@ export function appReducer(state: IAppState = initialState, action: AppActionTyp
                 draft.loginDetails = action.loginDetails;
                 break;
             case LOGOUT_REQUEST:
-                draft.loginDetails={fullName:"",phoneNumber:""}
-                draft.topPlayersTable=[]
-                draft.errorMessage=""
+                draft.loginDetails = { fullName: '', phoneNumber: '' }
+                draft.topPlayersTable = []
+                draft.errorMessage = ''
                 break;
             case TABLE_REQUEST:
                 draft.topPlayersTable = action.topPlayersTable;

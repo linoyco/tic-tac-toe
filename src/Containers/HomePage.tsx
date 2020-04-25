@@ -11,7 +11,7 @@ const HomePage = () => (
         <Text style={styles.header}>Welcome to</Text>
         <Text style={[styles.header, { marginBottom: '50%' }]}>Tic Tac Toe!</Text>
         <Logo />
-        <View style={styles.logoView}>
+        <View style={styles.buttonView}>
             <AppLinkButton
                 title='Please login'
                 onPress={() => RootNavigation.navigate(Routes.LOGIN, null)}
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 30,
     },
-    logoView: {
+    buttonView: {
         width: '100%',
         marginTop: 'auto'
     }

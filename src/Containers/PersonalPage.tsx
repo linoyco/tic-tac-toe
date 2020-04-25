@@ -6,7 +6,7 @@ import { DataTable } from 'react-native-paper';
 
 import AppLinkButton from '../Components/AppLinkButton';
 import * as Routes from '../Lib/routes';
-import { loginRequest, tableRequest, logoutRequest } from '../State/Actions/App';
+import { tableRequest, logoutRequest } from '../State/Actions/App';
 import * as RootNavigation from '../Lib/RootNavigation';
 
 const PersonalPage: React.FunctionComponent = () => {
@@ -92,7 +92,6 @@ const styles = StyleSheet.create({
         padding: 5,
         justifyContent: 'center',
         marginBottom: '10%',
-
     },
     tableHeader: {
         fontSize: 20,

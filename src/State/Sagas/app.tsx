@@ -1,14 +1,10 @@
-import { take, call, put } from "redux-saga/effects";
-import * as Routes from "../../Lib/routes";
-import * as RootNavigation from "../../Lib/RootNavigation";
-import * as HttpRequests from "../../Api/App";
-import {
-    LOGIN_REQUEST,
-    TABLE_REQUEST,
-    ERROR_MESSAGE,
-    LOGOUT_REQUEST,
-} from "../Actions/App/types";
-import { ILoginDetails } from "../../Containers/LoginPage";
+import { take, call, put } from 'redux-saga/effects';
+
+import * as Routes from '../../Lib/routes';
+import * as RootNavigation from '../../Lib/RootNavigation';
+import * as HttpRequests from '../../Api/App';
+import { LOGIN_REQUEST, TABLE_REQUEST, ERROR_MESSAGE, LOGOUT_REQUEST } from '../Actions/App/types';
+import { ILoginDetails } from '../../Containers/LoginPage';
 
 function* loginRequestFlow(loginDetails: ILoginDetails) {
     try {

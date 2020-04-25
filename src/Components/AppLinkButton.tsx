@@ -5,7 +5,6 @@ import { View, StyleSheet } from 'react-native';
 interface IProps {
     title: string;
     color?: string;
-    style?: any;
     onPress?: any;
 }
 
