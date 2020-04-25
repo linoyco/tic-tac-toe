@@ -12,10 +12,9 @@ import { ILoginDetails } from "../../Containers/LoginPage";
 function* loginRequestFlow(loginDetails: ILoginDetails) {
     try {
         yield put({ type: ERROR_MESSAGE, error: "" });
-        
-        const res=yield HttpRequests.loginRequest(loginDetails);
+        const res = yield HttpRequests.loginRequest(loginDetails);
         console.log(res.data);
-        yield put({type:LOGIN_REQUEST,loginDetails:res.data})
+        yield put({ type: LOGIN_REQUEST, loginDetails: res.data });
         yield RootNavigation.navigate(Routes.PROFILE, null);
     } catch (error) {
         yield put({ type: ERROR_MESSAGE, error: error.message });
@@ -29,11 +28,11 @@ export function* watchLoginRequest() {
     }
 }
 
-function* tableRequestFlow() {
+function* tableRequestFlow(loginDetails: ILoginDetails) {
     try {
         yield put({ type: ERROR_MESSAGE, error: "" });
-
-        yield console.log("Doing some internet stuff to get the table");
+        const res = yield HttpRequests.tableRequest(loginDetails);
+        yield put({ type: TABLE_REQUEST, topPlayersTable: res.data });
     } catch (error) {
         yield put({ type: ERROR_MESSAGE, error: error.message });
     }
@@ -41,7 +40,7 @@ function* tableRequestFlow() {
 
 export function* watchTableRequest() {
     while (true) {
-        yield take(TABLE_REQUEST);
-        yield call(tableRequestFlow);
+        const {loginDetails}=yield take(TABLE_REQUEST);
+        yield call(tableRequestFlow,loginDetails);
     }
 }

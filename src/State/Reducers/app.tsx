@@ -5,8 +5,8 @@ import { demoTable } from "../../Lib/demoTable";
 import { ILoginDetails } from "../../Containers/LoginPage";
 
 export interface IPlayerStats {
+    rank:string
     fullName: string;
-    phoneNumber: string;
     numberOfWins: number;
 }
 
@@ -32,7 +32,7 @@ export function appReducer(state: IAppState = initialState, action: AppActionTyp
                 draft.loginDetails = action.loginDetails;
                 break;
             case TABLE_REQUEST:
-                draft.topPlayersTable = demoTable;
+                draft.topPlayersTable = action.topPlayersTable;
                 break;
             case ERROR_MESSAGE:
                 draft.errorMessage = action.error;

@@ -1,5 +1,6 @@
 import * as AppActions from './types';
 import { ILoginDetails } from '../../../Containers/LoginPage';
+import { IPlayerStats } from '../../Reducers/app';
 
 export function loginRequest(loginDetails: ILoginDetails): AppActions.ILoginRequest {
     return {
@@ -8,9 +9,10 @@ export function loginRequest(loginDetails: ILoginDetails): AppActions.ILoginRequ
     }
 }
 
-export function tableRequest(loginDetails: ILoginDetails) :AppActions.ITableRequest {
+export function tableRequest(loginDetails:ILoginDetails,topPlayersTable: Array<IPlayerStats>) :AppActions.ITableRequest {
     return {
         type: AppActions.TABLE_REQUEST,
-        loginDetails:loginDetails
+        loginDetails:loginDetails,
+        topPlayersTable:topPlayersTable
     }
 }
