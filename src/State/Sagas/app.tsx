@@ -52,7 +52,7 @@ export function* tableRequestFlow(loginDetails: ILoginDetails) {
 
 export function* watchTableRequest() {
     while (true) {
-        const {loginDetails} = yield take(TABLE_REQUEST);
-        yield call(tableRequestFlow, loginDetails);
+        const login:ILoginDetails = yield take(TABLE_REQUEST);
+        yield call(tableRequestFlow, login);
     }
 }

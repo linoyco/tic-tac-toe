@@ -1,3 +1,4 @@
+import { ILoginDetails } from "../src/Containers/LoginPage";
 
 
 export const topPlayersTable = [
@@ -27,3 +28,8 @@ export const topPlayersTable = [
         numberOfWins: 0,
     },
 ];
+
+export const loginDetails:ILoginDetails= {
+    fullName:"111",
+    phoneNumber:"0500000000"
+}
