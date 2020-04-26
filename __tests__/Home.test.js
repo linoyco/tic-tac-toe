@@ -7,4 +7,3 @@ test("Home snapShot", () => {
     const snap = renderer.create(<Home />).toJSON();
     expect(snap).toMatchSnapshot();
 });
-
