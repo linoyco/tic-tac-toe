@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
-import { DataTable } from 'react-native-paper';
-
+import { DataTable ,ActivityIndicator, Colors } from 'react-native-paper';
 import AppLinkButton from '../Components/AppLinkButton';
 import * as Routes from '../Lib/routes';
 import { tableRequest, logoutRequest } from '../State/Actions/App';
@@ -13,7 +12,7 @@ const PersonalPage: React.FunctionComponent = () => {
     const dispatch: Dispatch = useDispatch();
 
     const loginDetails = useSelector((state: any) => state.app.loginDetails);
-
+    const loading = useSelector((state: any) => state.app.loading);
     let topPlayers = useSelector((state: any) => state.app.topPlayersTable);
 
     const errorMessage = useSelector((state: any) => state.app.errorMessage);
@@ -24,7 +23,10 @@ const PersonalPage: React.FunctionComponent = () => {
 
     const mapTable = () => {
         if (topPlayers.length === 0) {
-            return (<View></View>);
+            return <View></View>;
+        } else if (loading) {
+            <Text style={styles.tableHeader}>Loading data...</Text>;
+            return <ActivityIndicator animating={true} color={Colors.red800} />;
         } else {
             return (<DataTable style={styles.table}>
                 <Text style={styles.tableHeader}>Top 5 players!</Text>
@@ -44,7 +46,7 @@ const PersonalPage: React.FunctionComponent = () => {
                 ))}
             </DataTable>);
         }
-    }
+    };
 
     const handleLogOut = () => {
         dispatch(logoutRequest());
@@ -95,9 +97,9 @@ const styles = StyleSheet.create({
     },
     tableHeader: {
         fontSize: 20,
-        textAlign: 'center',
-        marginBottom: '3%',
-        fontWeight: 'bold'
+        textAlign: "center",
+        marginBottom: "3%",
+        fontWeight: "bold",
     },
 });
 

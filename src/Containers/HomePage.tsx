@@ -1,11 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-
 import * as Routes from '../Lib/routes';
 import AppLinkButton from '../Components/AppLinkButton';
 import * as RootNavigation from '../Lib/RootNavigation';
 import Logo from '../Components/Logo';
-
 const HomePage = () => (
     <View style={styles.container}>
         <Text style={styles.header}>Welcome to</Text>
