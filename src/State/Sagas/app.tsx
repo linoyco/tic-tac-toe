@@ -8,9 +8,9 @@ import { ILoginDetails } from '../../Containers/LoginPage';
 
 function* loginRequestFlow(loginDetails: ILoginDetails) {
     try {
-        yield put({ type: ERROR_MESSAGE, error: "" });
+        yield put({ type: ERROR_MESSAGE, error: '' });
         const res = yield HttpRequests.loginRequest(loginDetails);
-        console.log(res.data);
+        
         yield put({ type: LOGIN_REQUEST, loginDetails: res.data });
         yield RootNavigation.navigate(Routes.PROFILE, null);
     } catch (error) {
@@ -28,7 +28,6 @@ export function* watchLoginRequest() {
 function* logoutRequestFlow() {
     try {
         yield RootNavigation.navigate(Routes.HOME, null);
-        console.log("Logging out")
     } catch (error) {
         yield put({ type: ERROR_MESSAGE, error: error.message });
     }
@@ -43,8 +42,9 @@ export function* watchLogoutRequest() {
 
 function* tableRequestFlow(loginDetails: ILoginDetails) {
     try {
-        yield put({ type: ERROR_MESSAGE, error: "" });
+        yield put({ type: ERROR_MESSAGE, error: '' });
         const res = yield HttpRequests.tableRequest(loginDetails);
+        
         yield put({ type: TABLE_REQUEST, topPlayersTable: res.data });
     } catch (error) {
         yield put({ type: ERROR_MESSAGE, error: error.message });

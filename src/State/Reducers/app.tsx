@@ -1,10 +1,10 @@
-import produce from "immer";
+import produce from 'immer';
 
-import { AppActionTypes, LOGIN_REQUEST, TABLE_REQUEST, ERROR_MESSAGE, LOGOUT_REQUEST } from "../Actions/App/types";
-import { ILoginDetails } from "../../Containers/LoginPage";
+import { AppActionTypes, LOGIN_REQUEST, TABLE_REQUEST, ERROR_MESSAGE, LOGOUT_REQUEST } from '../Actions/App/types';
+import { ILoginDetails } from '../../Containers/LoginPage';
 
 export interface IPlayerStats {
-    rank: string
+    rank: string;
     fullName: string;
     numberOfWins: number;
 }
