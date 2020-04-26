@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
         width: '100%',
         marginBottom: '2%',
         marginTop: '2%',
+        maxWidth: 370
     }
 });
 
