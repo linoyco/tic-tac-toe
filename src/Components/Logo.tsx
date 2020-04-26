@@ -18,12 +18,12 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignContent: 'center',
         borderWidth: 1,
         borderColor: 'black',
         borderRadius: 5,
-        padding: 10,
+        padding: 20
     },
     logoX: {
         color: 'red',
@@ -34,13 +34,11 @@ const styles = StyleSheet.create({
         fontSize: 40,
     },
     outView: {
-        padding: 0,
         borderWidth: 2,
         borderColor: 'yellow',
         borderRadius: 5,
     },
     outOutView: {
-        padding: 0,
         borderWidth: 1,
         borderColor: 'black',
         borderRadius: 5,

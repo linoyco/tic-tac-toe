@@ -197,6 +197,7 @@ const styles = StyleSheet.create({
     reset: {
         height: 40,
         width: '100%',
+        maxWidth: 370,
         backgroundColor: '#6200ee',
         marginTop: 30,
     },

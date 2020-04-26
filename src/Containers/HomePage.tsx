@@ -9,7 +9,7 @@ import Logo from '../Components/Logo';
 const HomePage: React.FunctionComponent = () => (
     <View style={styles.container}>
         <Text style={styles.header}>Welcome to</Text>
-        <Text style={[styles.header, { marginTop: 0 }]}>Tic Tac Toe!</Text>
+        <Text style={[styles.header, { marginBottom: '10%' }]}>Tic Tac Toe!</Text>
         <Logo />
         <View style={styles.buttonView}>
             <AppLinkButton
@@ -24,12 +24,10 @@ const HomePage: React.FunctionComponent = () => (
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        justifyContent: 'space-around',
+        justifyContent: 'center',
         width: '100%',
-        height: '80%',
+        height: '100%',
         padding: 15,
-        borderColor:'yellow',
-        borderWidth: 3
     },
     header: {
         fontWeight: 'bold',
@@ -37,6 +35,7 @@ const styles = StyleSheet.create({
     },
     buttonView: {
         width: '80%',
+        marginTop: '10%'
     }
 });
 

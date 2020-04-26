@@ -34,55 +34,56 @@ const LoginPage: React.FunctionComponent = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.headingStyle}>LOGIN</Text>
-
-            <FormBuilder
-                form={form}
-                formConfigArray={[
-                    {
-                        type: 'input',
-                        variant: 'outlined',
-                        name: 'phoneNumber',
-                        label: 'Your phone number',
-                        rules: {
-                            minLength: {
-                                value: 10,
-                                message: 'Phone number is min 10 numbers'
+            <View style={styles.formView}>
+                <FormBuilder
+                    form={form}
+                    formConfigArray={[
+                        {
+                            type: 'input',
+                            variant: 'outlined',
+                            name: 'phoneNumber',
+                            label: 'Your phone number',
+                            rules: {
+                                minLength: {
+                                    value: 10,
+                                    message: 'Phone number is min 10 numbers'
+                                },
+                                required: {
+                                    value: true,
+                                    message: 'Phone number is required',
+                                },
                             },
-                            required: {
-                                value: true, 
-                                message: 'Phone number is required',
-                            },
-                        },
-                        textInputProps: {
-                            textContentType: 'telephoneNumber',
-                            keyboardType: 'phone-pad',
-                            style: { backgroundColor: 'white' },
-                        },
-                    },
-                    {
-                        type: 'input',
-                        variant: 'outlined',
-                        name: 'fullName',
-                        label: 'Your full name',
-                        rules: {
-                            required: {
-                                value: true,
-                                message: 'Full name is required',
+                            textInputProps: {
+                                textContentType: 'telephoneNumber',
+                                keyboardType: 'phone-pad',
+                                style: { backgroundColor: 'white', margin: 'auto', width: '100%', maxWidth: 370 },
                             },
                         },
-                        textInputProps: {
-                            textContentType: 'username',
-                            keyboardType: 'default',
-                            autoCapitalize: 'sentences',
-                            style: { backgroundColor: 'white' },
+                        {
+                            type: 'input',
+                            variant: 'outlined',
+                            name: 'fullName',
+                            label: 'Your full name',
+                            rules: {
+                                required: {
+                                    value: true,
+                                    message: 'Full name is required',
+                                },
+                            },
+                            textInputProps: {
+                                textContentType: 'username',
+                                keyboardType: 'default',
+                                autoCapitalize: 'sentences',
+                                style: { backgroundColor: 'white', margin: 'auto', width: '100%', maxWidth: 370 },
+                            },
                         },
-                    },
-                ]}>
-                <AppLinkButton
-                    title='Log-in'
-                    color='#6200ee'
-                    onPress={form.handleSubmit((data: ILoginDetails) => handleLogin(data))} />
-            </FormBuilder>
+                    ]}>
+                    <AppLinkButton
+                        title='Log-in'
+                        color='#6200ee'
+                        onPress={form.handleSubmit((data: ILoginDetails) => handleLogin(data))} />
+                </FormBuilder>
+            </View>
             <Text style={{ color: 'red' }}>{errorMessage || ''}</Text>
         </View>
     );
@@ -90,18 +91,24 @@ const LoginPage: React.FunctionComponent = () => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        width: '80%',
-        height: '80%',
-        padding: '5%',
+        alignItems: 'center',
         justifyContent: 'center',
-        margin: '10%'
+        width: '100%',
+        height: '100%',
+        padding: 15,
+    },
+    formView: {
+        width: '80%',
+        height: '70%',
+        marginTop: '5%',
+        marginBottom: 'auto',
     },
     headingStyle: {
         fontSize: 30,
         textAlign: 'center',
-        marginBottom: '20%',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginTop: '10%',
+        marginBottom: 'auto'
     },
 });
 

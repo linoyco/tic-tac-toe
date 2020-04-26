@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
-import { DataTable ,ActivityIndicator, Colors } from 'react-native-paper';
+import { DataTable, ActivityIndicator, Colors } from 'react-native-paper';
+
 import AppLinkButton from '../Components/AppLinkButton';
 import * as Routes from '../Lib/routes';
 import { tableRequest, logoutRequest } from '../State/Actions/App';
@@ -58,47 +59,48 @@ const PersonalPage: React.FunctionComponent = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.headingStyle}>Hello, {loginDetails.fullName}</Text>
-            {mapTable()}
-            <AppLinkButton
-                title="Start to play !"
-                onPress={() => RootNavigation.navigate(Routes.GAME, null)}
-                color="#A6F2A6"
-            />
-            <AppLinkButton
-                title="Log out"
-                color="#636364"
-                onPress={() => handleLogOut()}
-            />
-            <Text style={{ color: 'red' }}>{errorMessage || ''}</Text>
+                <Text style={styles.headingStyle}>Hello, {loginDetails.fullName}</Text>
+                <View style={{ width: '95%', marginBottom:0, marginTop:'auto' }}>
+                {mapTable()}
+                </View>
+                <View style={{ width: '80%', marginBottom:0, marginTop:'auto' }}>
+                    <AppLinkButton
+                        title="Start to play !"
+                        onPress={() => RootNavigation.navigate(Routes.GAME, null)}
+                        color="#A6F2A6"
+                    />
+                    <AppLinkButton
+                        title="Log out"
+                        color="#636364"
+                        onPress={() => handleLogOut()}
+                    />
+                </View>
+                <Text style={{ color: 'red' }}>{errorMessage || ''}</Text>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        width: '80%',
-        height: '80%',
-        padding: '5%',
-        justifyContent: 'center',
-        margin: '10%'
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        width: '100%',
+        height: '100%',
+        padding: 15,
     },
     headingStyle: {
         fontSize: 30,
         textAlign: 'center',
-        marginBottom: '20%',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+
     },
     table: {
         padding: 5,
         justifyContent: 'center',
-        marginBottom: '10%',
     },
     tableHeader: {
         fontSize: 20,
         textAlign: "center",
-        marginBottom: "3%",
         fontWeight: "bold",
     },
 });
