@@ -1,5 +1,4 @@
 import { take, call, put } from 'redux-saga/effects';
-
 import * as Routes from '../../Lib/routes';
 import * as RootNavigation from '../../Lib/RootNavigation';
 import * as HttpRequests from '../../Api/App';
@@ -40,7 +39,7 @@ export function* watchLogoutRequest() {
     }
 }
 
-function* tableRequestFlow(loginDetails: ILoginDetails) {
+export function* tableRequestFlow(loginDetails: ILoginDetails) {
     try {
         yield put({ type: ERROR_MESSAGE, error: '' });
         const res = yield HttpRequests.tableRequest(loginDetails);
@@ -53,7 +52,7 @@ function* tableRequestFlow(loginDetails: ILoginDetails) {
 
 export function* watchTableRequest() {
     while (true) {
-        const { loginDetails } = yield take(TABLE_REQUEST);
+        const {loginDetails} = yield take(TABLE_REQUEST);
         yield call(tableRequestFlow, loginDetails);
     }
 }

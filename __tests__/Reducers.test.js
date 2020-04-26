@@ -1,8 +1,32 @@
 import reducer from "../src/State/Reducers/app";
 import * as types from "../src/State/Actions/App/types";
-import demoTable from "../src/Lib/demoTable";
-
-
+const demoTable = [
+    {
+        rank: "1",
+        fullName: "Linoy Cohen",
+        numberOfWins: 10,
+    },
+    {
+        rank: "2",
+        fullName: "Chen Ben Ami",
+        numberOfWins: 9,
+    },
+    {
+        rank: "3",
+        fullName: "Other guy 1",
+        numberOfWins: 5,
+    },
+    {
+        rank: "4",
+        fullName: "Other guy 2",
+        numberOfWins: 4,
+    },
+    {
+        rank: "5",
+        fullName: "Other guy 3",
+        numberOfWins: 0,
+    },
+];
 describe("app reducer", () => {
     it("should return the initial state", () => {
         expect(reducer(undefined, {})).toEqual({
@@ -11,6 +35,7 @@ describe("app reducer", () => {
                 fullName: "",
             },
             topPlayersTable: [],
+            errorMessage:""
         });
     });
     const loginDetails = { fullName: "lil", phoneNumber: "" };
@@ -43,19 +68,29 @@ describe("app reducer", () => {
         ).toEqual({
             topPlayersTable: [
                 {
-                    fullName: "chen",
-                    phoneNumber: "0502009298",
+                    rank: "1",
+                    fullName: "Linoy Cohen",
                     numberOfWins: 10,
                 },
                 {
-                    fullName: "chen",
-                    phoneNumber: "0502009298",
-                    numberOfWins: 10,
+                    rank: "2",
+                    fullName: "Chen Ben Ami",
+                    numberOfWins: 9,
                 },
                 {
-                    fullName: "chen",
-                    phoneNumber: "0502009298",
-                    numberOfWins: 10,
+                    rank: "3",
+                    fullName: "Other guy 1",
+                    numberOfWins: 5,
+                },
+                {
+                    rank: "4",
+                    fullName: "Other guy 2",
+                    numberOfWins: 4,
+                },
+                {
+                    rank: "5",
+                    fullName: "Other guy 3",
+                    numberOfWins: 0,
                 },
             ],
         });
