@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, StyleSheet, Text, TextInput, Button } from 'react-native';
+import { View, StyleSheet, Text, } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
+import { TextInput, Button } from "react-native-paper"
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { loginRequest } from '../State/Actions/App/index';
@@ -18,15 +19,15 @@ const LoginPage: React.FunctionComponent = () => {
     const handleLogin = (loginDetails: ILoginDetails) => {
         dispatch(loginRequest(loginDetails));
     }
-
+    const phoneRegExp = /^[0-9]+$/
     const SignupSchema = Yup.object().shape({
         fullName: Yup.string()
             .min(2, 'Too Short!')
             .max(50, 'Too Long!')
             .required('Required'),
         phoneNumber: Yup.string()
-            .min(10, 'Too Short!')
-            .max(10, 'Too Long!')
+            .matches(phoneRegExp, "Phone number must contain only numbers")
+            .length(10, "Phone number must be exactly 10 characters")
             .required('Required'),
     });
 
@@ -41,6 +42,8 @@ const LoginPage: React.FunctionComponent = () => {
             {({ errors, touched, handleChange, handleBlur, handleSubmit, values }) => (
                 <View>
                     <TextInput
+                        mode={'flat'}
+                        style={styles.inputStyle}
                         testID={"phoneNumber-input"}
                         onChangeText={handleChange('phoneNumber')}
                         onBlur={handleBlur('phoneNumber')}
@@ -48,9 +51,11 @@ const LoginPage: React.FunctionComponent = () => {
                         placeholder="Enter your phone Number"
                     />
                     {errors.phoneNumber && touched.phoneNumber ? (
-                        <Text testID={"phoneNumber-error"}>{errors.phoneNumber}</Text>
+                        <Text style={styles.errorStyle} testID={"phoneNumber-error"}>{errors.phoneNumber}</Text>
                     ) : null}
                     <TextInput
+                        mode={'flat'}
+                        style={styles.inputStyle}
                         testID={"fullName-input"}
                         onChangeText={handleChange('fullName')}
                         onBlur={handleBlur('fullName')}
@@ -59,9 +64,9 @@ const LoginPage: React.FunctionComponent = () => {
                         placeholder="Enter your full name"
                     />
                     {errors.fullName && touched.fullName ? (
-                        <Text testID={"fullName-error"}>{errors.fullName}</Text>
+                        <Text style={styles.errorStyle} testID={"fullName-error"}>{errors.fullName}</Text>
                     ) : null}
-                    <Button testID={"submit-button"} onPress={handleSubmit} title="Submit" />
+                    <Button mode={"outlined"} style={styles.buttonStyle} testID={"submit-button"} onPress={handleSubmit}>Submit</Button>
                 </View>
             )}
         </Formik>
@@ -89,7 +94,19 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: '20%',
         fontWeight: 'bold'
-    },
+    }, buttonStyle: {
+        width: '100%',
+        marginBottom: '2%',
+        marginTop: '2%',
+        maxWidth: 370
+    }, inputStyle: {
+        backgroundColor: 'white'
+    }, errorStyle: {
+        marginBottom: '2%',
+        marginTop: '2%',
+        maxWidth: 370,
+        color: "red"
+    }
 });
 
 export default LoginPage;
