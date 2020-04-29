@@ -43,4 +43,34 @@ describe("app reducer", () => {
             topPlayersTable: consts.topPlayersTable
         });
     });
+    it("should handle LOGOUT_REQUEST", () => {
+        expect(
+            reducer(
+                {},
+                {
+                    type: types.LOGOUT_REQUEST
+                }
+            )
+        ).toEqual({
+            errorMessage: "",
+            loginDetails: {
+                fullName: "",
+                phoneNumber: ""
+            },
+            topPlayersTable: []
+        });
+    });
+    it("should handle ERROR_MESSAGE", () => {
+        expect(
+            reducer(
+                {},
+                {
+                    type: types.ERROR_MESSAGE,
+                    errorMessage: "error",
+                }
+            )
+        ).toEqual({
+            errorMessage: undefined
+        });
+    });
 });

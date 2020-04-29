@@ -25,6 +25,17 @@ describe("actionsTable", () => {
             loginDetails,
             topPlayersTable
         };
-        expect(actions.tableRequest(loginDetails,topPlayersTable)).toEqual(expectedAction);
+        expect(actions.tableRequest(loginDetails, topPlayersTable)).toEqual(expectedAction);
     });
 });
+
+describe("action logoutRequest", () => {
+    it("should create an action to request logout", () => {
+        const expectedAction = {
+            type: types.LOGOUT_REQUEST,
+        };
+        expect(actions.logoutRequest()).toEqual(expectedAction);
+    })
+})
+
+
