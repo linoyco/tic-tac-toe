@@ -5,11 +5,10 @@ import * as HttpRequests from '../../Api/App';
 import { LOGIN_REQUEST, TABLE_REQUEST, ERROR_MESSAGE, LOGOUT_REQUEST } from '../Actions/App/types';
 import { ILoginDetails } from '../../Containers/LoginPage';
 
-function* loginRequestFlow(loginDetails: ILoginDetails) {
+export function* loginRequestFlow(loginDetails: ILoginDetails) {
     try {
         yield put({ type: ERROR_MESSAGE, error: '' });
         const res = yield HttpRequests.loginRequest(loginDetails);
-        
         yield put({ type: LOGIN_REQUEST, loginDetails: res.data });
         yield RootNavigation.navigate(Routes.PROFILE, null);
     } catch (error) {
@@ -19,12 +18,12 @@ function* loginRequestFlow(loginDetails: ILoginDetails) {
 
 export function* watchLoginRequest() {
     while (true) {
-        const { loginDetails } = yield take(LOGIN_REQUEST);
+        const loginDetails:ILoginDetails = yield take(LOGIN_REQUEST);
         yield call(loginRequestFlow, loginDetails);
     }
 }
 
-function* logoutRequestFlow() {
+export function* logoutRequestFlow() {
     try {
         yield RootNavigation.navigate(Routes.HOME, null);
     } catch (error) {
