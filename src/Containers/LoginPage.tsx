@@ -14,7 +14,6 @@ export interface ILoginDetails {
 const LoginPage: React.FunctionComponent = () => {
 
     const dispatch: Dispatch = useDispatch();
-
     const errorMessage = useSelector((state: any) => state.app.errorMessage);
     const handleLogin = (loginDetails: ILoginDetails) => {
         dispatch(loginRequest(loginDetails));
@@ -22,7 +21,7 @@ const LoginPage: React.FunctionComponent = () => {
     const phoneRegExp = /^[0-9]+$/
     const SignupSchema = Yup.object().shape({
         fullName: Yup.string()
-            .min(2, 'Too Short!')
+            .min(2, 'Full name must be longer than 2 characters')
             .max(50, 'Too Long!')
             .required('Required'),
         phoneNumber: Yup.string()
