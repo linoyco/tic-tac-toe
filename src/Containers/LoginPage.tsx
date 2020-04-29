@@ -2,10 +2,13 @@ import React from 'react';
 import { View, StyleSheet, Text, } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
-import { TextInput, Button } from "react-native-paper"
+import { TextInput } from 'react-native-paper';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+
 import { loginRequest } from '../State/Actions/App/index';
+import AppLinkButton from '../Components/AppLinkButton';
+
 export interface ILoginDetails {
     phoneNumber: string;
     fullName: string;
@@ -14,11 +17,14 @@ export interface ILoginDetails {
 const LoginPage: React.FunctionComponent = () => {
 
     const dispatch: Dispatch = useDispatch();
+
     const errorMessage = useSelector((state: any) => state.app.errorMessage);
+
     const handleLogin = (loginDetails: ILoginDetails) => {
         dispatch(loginRequest(loginDetails));
     }
-    const phoneRegExp = /^[0-9]+$/
+
+    const phoneRegExp = /^[0-9]+$/;
     const SignupSchema = Yup.object().shape({
         fullName: Yup.string()
             .min(2, 'Full name must be longer than 2 characters')
@@ -33,15 +39,13 @@ const LoginPage: React.FunctionComponent = () => {
     const form = () => (
         <Formik
             initialValues={{ phoneNumber: '', fullName: '' }}
-            onSubmit={(values) => {
-                handleLogin(values)
-            }}
+            onSubmit={(values) => { handleLogin(values) }}
             validationSchema={SignupSchema}
         >
             {({ errors, touched, handleChange, handleBlur, handleSubmit, values }) => (
-                <View>
+                <View style={styles.formView}>
                     <TextInput
-                        mode={'flat'}
+                        mode='outlined'
                         style={styles.inputStyle}
                         testID={"phoneNumber-input"}
                         onChangeText={handleChange('phoneNumber')}
@@ -53,7 +57,7 @@ const LoginPage: React.FunctionComponent = () => {
                         <Text style={styles.errorStyle} testID={"phoneNumber-error"}>{errors.phoneNumber}</Text>
                     ) : null}
                     <TextInput
-                        mode={'flat'}
+                        mode='outlined'
                         style={styles.inputStyle}
                         testID={"fullName-input"}
                         onChangeText={handleChange('fullName')}
@@ -65,7 +69,7 @@ const LoginPage: React.FunctionComponent = () => {
                     {errors.fullName && touched.fullName ? (
                         <Text style={styles.errorStyle} testID={"fullName-error"}>{errors.fullName}</Text>
                     ) : null}
-                    <Button mode={"outlined"} style={styles.buttonStyle} testID={"submit-button"} onPress={handleSubmit}>Submit</Button>
+                    <AppLinkButton title='Log-in' color='#6200ee' onPress={handleSubmit} testID='submit-button' />
                 </View>
             )}
         </Formik>
@@ -81,35 +85,31 @@ const LoginPage: React.FunctionComponent = () => {
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
         height: '100%',
         padding: 15,
     },
-    formView: {
-        width: '80%',
-        height: '70%',
-        marginTop: '5%',
-        marginBottom: 'auto',
-    },
     headingStyle: {
         fontSize: 30,
         textAlign: 'center',
-        marginBottom: '20%',
-        fontWeight: 'bold'
-    }, buttonStyle: {
-        width: '100%',
-        marginBottom: '2%',
-        marginTop: '2%',
-        maxWidth: 370
-    }, inputStyle: {
-        backgroundColor: 'white'
-    }, errorStyle: {
-        marginBottom: '2%',
-        marginTop: '2%',
+        fontWeight: 'bold',
+    },
+    formView: {
+        width: '80%',
+        height: '40%',
+        maxWidth:370,
+        justifyContent:'space-around'
+    },
+    inputStyle: {
+        backgroundColor: 'white',
+        width:'100%',
         maxWidth: 370,
-        color: "red"
+    },
+    errorStyle: {
+        color: 'red',
     }
 });
 

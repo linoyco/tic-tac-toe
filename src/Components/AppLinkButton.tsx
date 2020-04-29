@@ -6,11 +6,12 @@ interface IProps {
     title: string;
     color?: string;
     onPress?: any;
+    testID?: string;
 }
 
-const AppLinkButton: React.FunctionComponent<IProps> = ({ title, color, onPress }) => (
+const AppLinkButton: React.FunctionComponent<IProps> = ({ title, color, onPress, testID }) => (
     <View style={styles.container} >
-        <Button onPress={onPress} color={color} mode={'contained'} style={styles.buttonStyle}>{title}</Button>
+        <Button testID={testID} onPress={onPress} color={color} mode={'contained'} style={styles.buttonStyle}>{title}</Button>
     </View>
 );
 
