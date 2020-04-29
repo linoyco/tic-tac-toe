@@ -1,13 +1,11 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
-import FormBuilder from 'react-native-paper-form-builder';
-import { useForm } from 'react-hook-form';
-
+import { TextInput, Button } from "react-native-paper"
+import { Formik } from 'formik';
+import * as Yup from 'yup';
 import { loginRequest } from '../State/Actions/App/index';
-import AppLinkButton from '../Components/AppLinkButton';
-
 export interface ILoginDetails {
     phoneNumber: string;
     fullName: string;
@@ -16,74 +14,66 @@ export interface ILoginDetails {
 const LoginPage: React.FunctionComponent = () => {
 
     const dispatch: Dispatch = useDispatch();
-
     const errorMessage = useSelector((state: any) => state.app.errorMessage);
-
-    const form = useForm<ILoginDetails>({
-        defaultValues: {
-            phoneNumber: '',
-            fullName: '',
-        },
-        mode: 'onChange',
-    });
-
     const handleLogin = (loginDetails: ILoginDetails) => {
         dispatch(loginRequest(loginDetails));
     }
+    const phoneRegExp = /^[0-9]+$/
+    const SignupSchema = Yup.object().shape({
+        fullName: Yup.string()
+            .min(2, 'Full name must be longer than 2 characters')
+            .max(50, 'Too Long!')
+            .required('Required'),
+        phoneNumber: Yup.string()
+            .matches(phoneRegExp, "Phone number must contain only numbers")
+            .length(10, "Phone number must be exactly 10 characters")
+            .required('Required'),
+    });
 
+    const form = () => (
+        <Formik
+            initialValues={{ phoneNumber: '', fullName: '' }}
+            onSubmit={(values) => {
+                handleLogin(values)
+            }}
+            validationSchema={SignupSchema}
+        >
+            {({ errors, touched, handleChange, handleBlur, handleSubmit, values }) => (
+                <View>
+                    <TextInput
+                        mode={'flat'}
+                        style={styles.inputStyle}
+                        testID={"phoneNumber-input"}
+                        onChangeText={handleChange('phoneNumber')}
+                        onBlur={handleBlur('phoneNumber')}
+                        value={values.phoneNumber}
+                        placeholder="Enter your phone Number"
+                    />
+                    {errors.phoneNumber && touched.phoneNumber ? (
+                        <Text style={styles.errorStyle} testID={"phoneNumber-error"}>{errors.phoneNumber}</Text>
+                    ) : null}
+                    <TextInput
+                        mode={'flat'}
+                        style={styles.inputStyle}
+                        testID={"fullName-input"}
+                        onChangeText={handleChange('fullName')}
+                        onBlur={handleBlur('fullName')}
+                        value={values.fullName}
+                        autoCapitalize="words"
+                        placeholder="Enter your full name"
+                    />
+                    {errors.fullName && touched.fullName ? (
+                        <Text style={styles.errorStyle} testID={"fullName-error"}>{errors.fullName}</Text>
+                    ) : null}
+                    <Button mode={"outlined"} style={styles.buttonStyle} testID={"submit-button"} onPress={handleSubmit}>Submit</Button>
+                </View>
+            )}
+        </Formik>
+    );
     return (
         <View style={styles.container}>
             <Text style={styles.headingStyle}>LOGIN</Text>
-            <View style={styles.formView}>
-                <FormBuilder
-                    form={form}
-                    formConfigArray={[
-                        {
-                            type: 'input',
-                            variant: 'outlined',
-                            name: 'phoneNumber',
-                            label: 'Your phone number',
-                            rules: {
-                                minLength: {
-                                    value: 10,
-                                    message: 'Phone number is min 10 numbers'
-                                },
-                                required: {
-                                    value: true,
-                                    message: 'Phone number is required',
-                                },
-                            },
-                            textInputProps: {
-                                textContentType: 'telephoneNumber',
-                                keyboardType: 'phone-pad',
-                                style: { backgroundColor: 'white', margin: 'auto', width: '100%', maxWidth: 370 },
-                            },
-                        },
-                        {
-                            type: 'input',
-                            variant: 'outlined',
-                            name: 'fullName',
-                            label: 'Your full name',
-                            rules: {
-                                required: {
-                                    value: true,
-                                    message: 'Full name is required',
-                                },
-                            },
-                            textInputProps: {
-                                textContentType: 'username',
-                                keyboardType: 'default',
-                                autoCapitalize: 'sentences',
-                                style: { backgroundColor: 'white', margin: 'auto', width: '100%', maxWidth: 370 },
-                            },
-                        },
-                    ]}>
-                    <AppLinkButton
-                        title='Log-in'
-                        color='#6200ee'
-                        onPress={form.handleSubmit((data: ILoginDetails) => handleLogin(data))} />
-                </FormBuilder>
-            </View>
+            {form()}
             <Text style={{ color: 'red' }}>{errorMessage || ''}</Text>
         </View>
     );
@@ -106,10 +96,21 @@ const styles = StyleSheet.create({
     headingStyle: {
         fontSize: 30,
         textAlign: 'center',
-        fontWeight: 'bold',
-        marginTop: '10%',
-        marginBottom: 'auto'
-    },
+        marginBottom: '20%',
+        fontWeight: 'bold'
+    }, buttonStyle: {
+        width: '100%',
+        marginBottom: '2%',
+        marginTop: '2%',
+        maxWidth: 370
+    }, inputStyle: {
+        backgroundColor: 'white'
+    }, errorStyle: {
+        marginBottom: '2%',
+        marginTop: '2%',
+        maxWidth: 370,
+        color: "red"
+    }
 });
 
 export default LoginPage;

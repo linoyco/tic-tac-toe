@@ -11,8 +11,8 @@ const HomePage: React.FunctionComponent = () => (
         <Text style={styles.header}>Welcome to</Text>
         <Text style={[styles.header, { marginBottom: '10%' }]}>Tic Tac Toe!</Text>
         <Logo />
-        <View style={styles.buttonView}>
-            <AppLinkButton
+        <View style={styles.buttonView} >
+            <AppLinkButton key="123"
                 title='Please login'
                 onPress={() => RootNavigation.navigate(Routes.LOGIN, null)}
                 color='#6200ee'
