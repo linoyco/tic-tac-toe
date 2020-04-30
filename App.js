@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-
+import { Provider as PaperProvider } from 'react-native-paper';
 import AppRouter from './src/Containers/AppRouter';
 import { rootReducer } from './src/State/Reducers/index';
 import rootSaga from './src/State/Sagas/index';
@@ -18,9 +18,11 @@ const store = createStore(rootReducer(),
 sagaMiddleware.run(rootSaga);
 
 const App = () => (
-  <Provider store={store}>
-    <AppRouter />
-  </Provider>
+  <PaperProvider>
+    <Provider store={store}>
+      <AppRouter />
+    </Provider>
+  </PaperProvider>
 );
 
 export default App;

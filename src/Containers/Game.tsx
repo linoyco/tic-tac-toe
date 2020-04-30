@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, StyleSheet, Alert, Text } from 'react-native';
+import { Dispatch } from "redux"
+import { useDispatch } from "react-redux"
+import { View, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import { Button } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSelector } from 'react-redux';
-
+import DialogBox from "../Components/DialogBox"
 import * as Routes from '../Lib/routes';
 import AppLinkButton from '../Components/AppLinkButton';
 import * as RootNavigation from '../Lib/RootNavigation';
+import { setGameWinner } from '../State/Actions/App/index';
 
 const Game: React.FunctionComponent = () => {
-
+    const dispatch: Dispatch = useDispatch();
+    const gameWinner = useSelector((state: any) => state.app.gameWinner);
     const [gameArr, setGameArr] = useState<Array<Array<number>>>([
         [0, 0, 0],
         [0, 0, 0],
@@ -44,15 +48,26 @@ const Game: React.FunctionComponent = () => {
         let winner = checkWinner();
 
         if (winner === 4) {
-            Alert.alert('No one wins');
+            dispatch(setGameWinner(4))
             resetBoard();
         } else if (winner === 1) {
-            Alert.alert('player 1 is winner !');
+            dispatch(setGameWinner(1))
             resetBoard();
         } else if (winner === -1) {
-            Alert.alert('player 2 is winner !');
+            dispatch(setGameWinner(-1))
             resetBoard();
         }
+    }
+
+
+    const showWinner = () => {
+        if (gameWinner === 4) {
+            return <DialogBox text={"It's a tie!"} ></DialogBox>
+        } else if (gameWinner === 1) {
+            return <DialogBox text={"Player 1 wins!"} ></DialogBox>
+        } else if (gameWinner === -1) {
+            return <DialogBox text={"Player 2 wins!"} ></DialogBox>
+        } else return null
     }
 
     const checkWinner = () => {
@@ -148,6 +163,7 @@ const Game: React.FunctionComponent = () => {
                 onPress={() => RootNavigation.navigate(Routes.PROFILE, null)}
                 color='#636364' />
             <Text style={{ color: 'red' }}>{errorMessage || ''}</Text>
+            {showWinner()}
         </View>
     );
 }

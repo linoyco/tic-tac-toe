@@ -11,6 +11,7 @@ describe("app reducer", () => {
             },
             topPlayersTable: [],
             errorMessage: "",
+            gameWinner: 0
         });
     });
     const loginDetails = { fullName: "", phoneNumber: "" };
@@ -72,5 +73,13 @@ describe("app reducer", () => {
         ).toEqual({
             errorMessage: undefined
         });
+    });
+    it("should handle GAME_WINNER", () => {
+        expect(reducer({}, {
+            type: types.GAME_WINNER,
+            gameWinner: 1
+        }
+        )
+        ).toEqual({ gameWinner: 1 });
     });
 });

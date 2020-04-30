@@ -4,8 +4,8 @@ import { IPlayerStats } from "../../Reducers/app";
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const TABLE_REQUEST = "TABLE_REQUEST";
 export const ERROR_MESSAGE = "ERROR_MESSAGE";
-export const LOGOUT_REQUEST="LOGOUT_REQUEST"
-
+export const LOGOUT_REQUEST = "LOGOUT_REQUEST"
+export const GAME_WINNER="GAME_WINNER"
 export interface ILoginRequest {
     type: typeof LOGIN_REQUEST;
     loginDetails: ILoginDetails;
@@ -27,4 +27,9 @@ export interface ISetErrorMessage {
     error: string;
 }
 
-export type AppActionTypes = ILoginRequest | ILogoutRequest| ITableRequest | ISetErrorMessage;
+export interface ISetGameWinner {
+    type: typeof GAME_WINNER,
+    gameWinner: number
+}
+
+export type AppActionTypes = ILoginRequest | ILogoutRequest | ITableRequest | ISetErrorMessage | ISetGameWinner;

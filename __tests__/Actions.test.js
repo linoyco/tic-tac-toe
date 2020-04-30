@@ -35,7 +35,17 @@ describe("action logoutRequest", () => {
             type: types.LOGOUT_REQUEST,
         };
         expect(actions.logoutRequest()).toEqual(expectedAction);
-    })
-})
+    });
+});
+
+describe("action gameWinner", () => {
+    it("should create an action to set the game winner", () => {
+        const expectedAction = {
+            type: types.GAME_WINNER,
+            gameWinner: 1
+        };
+        expect(actions.setGameWinner(1)).toEqual(expectedAction);
+    });
+});
 
 

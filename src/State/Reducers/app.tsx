@@ -1,5 +1,5 @@
 import produce from 'immer';
-import { AppActionTypes, LOGIN_REQUEST, TABLE_REQUEST, ERROR_MESSAGE, LOGOUT_REQUEST } from '../Actions/App/types';
+import { AppActionTypes, LOGIN_REQUEST, TABLE_REQUEST, ERROR_MESSAGE, LOGOUT_REQUEST, GAME_WINNER } from '../Actions/App/types';
 import { ILoginDetails } from '../../Containers/LoginPage';
 
 export interface IPlayerStats {
@@ -12,6 +12,7 @@ export interface IAppState {
     readonly loginDetails: ILoginDetails;
     readonly topPlayersTable: Array<IPlayerStats>;
     readonly errorMessage: string;
+    readonly gameWinner: number
 }
 
 const initialState: IAppState = {
@@ -20,10 +21,11 @@ const initialState: IAppState = {
         fullName: '',
     },
     topPlayersTable: [],
-    errorMessage: ''
+    errorMessage: '',
+    gameWinner: 0
 }
 
-export default  function appReducer(state: IAppState = initialState, action: AppActionTypes) {
+export default function appReducer(state: IAppState = initialState, action: AppActionTypes) {
     return produce(state, draft => {
         switch (action.type) {
             case LOGIN_REQUEST:
@@ -40,9 +42,12 @@ export default  function appReducer(state: IAppState = initialState, action: App
             case ERROR_MESSAGE:
                 draft.errorMessage = action.error;
                 break;
+            case GAME_WINNER:
+                draft.gameWinner = action.gameWinner;
+                break;
             default:
                 return state;
         }
-        
+
     });
 }
