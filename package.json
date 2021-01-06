@@ -17,7 +17,7 @@
     "@react-navigation/stack": "^5.2.12",
     "@types/react-native-vector-icons": "^6.4.5",
     "@types/styled-components": "^5.0.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "expo": "~37.0.3",
     "formik": "^2.1.4",
     "immer": "^5.0.0",
